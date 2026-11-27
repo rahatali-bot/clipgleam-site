@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample E · Premium Black</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#fff;--mute:#8a8a8f;--line:rgba(255,255,255,.16);--glass:rgba(255,255,255,.08);--gold:#e9c46a}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+.tag{position:fixed;bottom:14px;left:14px;z-index:60;background:#fff;color:#000;font:600 11px Inter;padding:5px 10px;border-radius:99px}
+nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px max(16px,6vw);background:rgba(0,0,0,.72);backdrop-filter:blur(14px)}
+.logo{display:flex;align-items:center;gap:10px;font:600 22px Inter;letter-spacing:-.01em}
+.logo i{width:26px;height:26px;border-radius:50%;border:2px solid #fff;position:relative;transform:rotate(-30deg) scaleY(.62)}
+.links{display:flex;gap:34px;font-size:15px;color:#d7d7db}
+.links a:hover{color:#fff}
+@media(max-width:820px){.links{display:none}}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1.5px solid #fff;border-radius:99px;padding:9px 20px;font-size:15px;background:none;transition:background .2s,color .2s}
+.pill:hover{background:#fff;color:#000}
+/* hero */
+.hero{position:relative;min-height:calc(100vh - 70px);display:grid;place-items:center;text-align:center;overflow:hidden;padding:40px 16px}
+.ringwrap{position:absolute;left:50%;top:50%;width:min(560px,80vw);aspect-ratio:1;transform:translate(-50%,-48%);perspective:900px}
+.ring{position:absolute;inset:0;border-radius:50%;transform-style:preserve-3d;animation:spin 14s linear infinite}
+.ring:before{content:"";position:absolute;inset:0;border-radius:50%;border:6px solid #fff;box-shadow:0 0 30px #fff,0 0 80px rgba(255,255,255,.55),inset 0 0 40px rgba(255,255,255,.5);filter:blur(.6px)}
+.ring:after{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),rgba(160,170,190,.25) 45%,rgba(0,0,0,0) 70%);filter:blur(8px)}
+@keyframes spin{from{transform:rotateX(62deg) rotateY(-28deg) rotateZ(0)}to{transform:rotateX(62deg) rotateY(-28deg) rotateZ(360deg)}}
+.hin{position:relative;z-index:2;width:100%;max-width:980px}
+h1{font:800 italic clamp(46px,8.5vw,112px)/1 "Playfair Display",Georgia,serif;letter-spacing:-.01em;text-shadow:0 4px 40px rgba(0,0,0,.6)}
+.sub{font:300 clamp(20px,3vw,34px) Inter;color:#e8e8ea;margin:14px 0 40px;letter-spacing:.01em}
+.prompt{display:flex;align-items:center;gap:14px;max-width:880px;margin:0 auto;padding:10px 10px 10px 12px;border-radius:99px;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.06));border:1px solid var(--line);backdrop-filter:blur(18px)}
+.thumb{flex:none;width:78px;height:50px;border-radius:99px;background:center/cover;transition:background-image .4s}
+.bar{width:1px;height:26px;background:rgba(255,255,255,.4)}
+.prompt input{flex:1;min-width:0;background:none;border:0;color:#fff;font:16px Inter;outline:none}
+.prompt input::placeholder{color:#e6e6e9}
+.create{flex:none;border:0;border-radius:99px;padding:14px 28px;background:#0b0b0d;color:#fff;font:600 18px Inter;letter-spacing:.02em}
+.create:hover{background:#fff;color:#000}
+@media(max-width:600px){.thumb,.bar{display:none}.create{padding:12px 18px;font-size:15px}}
+.mute{position:absolute;right:max(16px,3vw);bottom:24px;color:#bbb;font-size:13px}
+/* sections */
+section{padding:110px 0 40px}
+.st{text-align:center;font:600 clamp(30px,4vw,46px) Inter;letter-spacing:-.02em;margin-bottom:38px}
+.st sup{font:700 13px Inter;color:#9bff5a;margin-left:6px;vertical-align:top;font-style:italic}
+.center{text-align:center;margin-top:36px}
+/* carousel */
+.car{position:relative;overflow:hidden}
+.track{display:flex;gap:16px;padding:0 max(16px,8vw);transition:transform .8s cubic-bezier(.6,0,.2,1)}
+.slide{flex:0 0 min(1100px,84vw);aspect-ratio:16/8.4;border-radius:14px;background:center/cover;position:relative;overflow:hidden}
+.slide:before{content:"";position:absolute;inset:0;background:inherit;background-size:cover;animation:kb 12s ease-in-out infinite alternate}
+@keyframes kb{to{transform:scale(1.1) translate(-2%,-1%)}}
+.capbar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px max(16px,8vw) 0;flex-wrap:wrap}
+.capbar b{font:600 18px Inter}.capbar p{color:var(--mute);font-size:14px}
+.dots{display:flex;gap:7px;margin-left:16px}.dots i{width:6px;height:6px;border-radius:50%;background:#555}.dots i.on{background:#fff}
+.arrows{display:flex;gap:16px}.arrows button{width:44px;height:44px;border-radius:50%;border:1.5px solid #fff;background:none;font-size:18px}
+.arrows button:hover{background:#fff;color:#000}
+/* feature tabs + mosaic */
+.ftabs{display:flex;justify-content:center;gap:clamp(20px,5vw,70px);flex-wrap:wrap;padding:0 16px;margin-bottom:30px}
+.ftabs button{background:none;border:0;text-align:center;opacity:.45;transition:opacity .3s}
+.ftabs button.on{opacity:1}
+.ftabs b{display:block;font:600 17px Inter}.ftabs small{color:var(--mute);font-size:13px}
+.mosaic{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.mrow{display:flex;gap:12px;width:max-content;animation:mq 70s linear infinite}
+.mrow.r2{animation-direction:reverse;animation-duration:85s;margin-top:12px}
+.mrow div{height:clamp(150px,20vw,230px);border-radius:10px;background:center/cover;flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* templates */
+.seg{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px;padding:0 16px}
+.seg button{border:1.5px solid var(--line);border-radius:99px;padding:8px 18px;background:none;font-size:14px;color:#cfcfd4}
+.seg button.on{background:#fff;color:#000;border-color:#fff}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;padding:0 max(16px,8vw)}
+.tc{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:4/5;background:center/cover;cursor:pointer}
+.tc:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.85))}
+.tc .tx{position:absolute;z-index:2;left:16px;right:16px;bottom:14px}
+.tc b{display:block;font:600 17px Inter}.tc small{color:#c9c9ce}
+.tc .go{position:absolute;z-index:2;top:14px;right:14px;border:1.5px solid #fff;border-radius:99px;padding:6px 14px;font-size:13px;opacity:0;transition:.3s;background:rgba(0,0,0,.4)}
+.tc:hover .go{opacity:1}
+.tc{transition:transform .4s}.tc:hover{transform:scale(1.02)}
+@media(hover:none){.tc .go{opacity:1}}
+.price{text-align:center;padding:120px 16px}
+.price h2{font:800 italic clamp(40px,6vw,80px)/1.05 "Playfair Display",serif}
+.price p{color:var(--mute);margin:16px 0 30px;font-size:18px}
+footer{border-top:1px solid #1c1c1f;padding:30px max(16px,6vw);color:#6d6d73;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){.ring,.mrow,.slide:before{animation:none}}
+</style></head><body>
+<div class="tag">Sample E · Premium Black (Kling-style)</div>
+<nav><a class="logo" href="#"><i></i>ClipGleam</a><div class="links"><a href="#video">Video</a><a href="#images">Images</a><a href="#templates">Templates</a><a href="#price">Pricing</a></div><a class="pill" href="#templates">Try Now</a></nav>
+
+<header class="hero">
+ <div class="ringwrap"><div class="ring"></div></div>
+ <div class="hin">
+  <h1>Your idea, on screen.</h1>
+  <div class="sub">You call the shots</div>
+  <form class="prompt" onsubmit="event.preventDefault()"><div class="thumb" id="th"></div><div class="bar"></div><input id="pi" aria-label="Your idea"><button class="create">Create Now</button></form>
+ </div>
+</header>
+
+<section id="video">
+ <h2 class="st">ClipGleam Video</h2>
+ <div class="car"><div class="track" id="tr"></div></div>
+ <div class="capbar"><div style="display:flex;align-items:center;flex-wrap:wrap;gap:8px"><b id="ct"></b><span class="dots" id="dt"></span><p id="cp" style="flex-basis:100%"></p></div><div class="arrows"><button type="button" id="pv" aria-label="Previous">‹</button><button type="button" id="nx" aria-label="Next">›</button></div></div>
+ <div class="center"><a class="pill" href="#templates">Try Now →</a></div>
+</section>
+
+<section id="images">
+ <h2 class="st">ClipGleam Image<sup>NEW</sup></h2>
+ <div class="ftabs"><button class="on" type="button"><b>True-to-life realism</b><small>Natural light. Real textures.</small></button><button type="button"><b>Pixar-style cartoons</b><small>Characters that stay the same.</small></button><button type="button"><b>Handmade clay</b><small>Stop-motion charm.</small></button><button type="button"><b>Luxury adverts</b><small>Products that shine.</small></button></div>
+ <div class="mosaic"><div class="mrow" id="m1"></div><div class="mrow r2" id="m2"></div></div>
+ <div class="center"><a class="pill" href="#templates">Try Now →</a></div>
+</section>
+
+<section id="templates">
+ <h2 class="st">Start from a template</h2>
+ <div class="seg" id="sg"></div>
+ <div class="tgrid" id="tg"></div>
+</section>
+
+<div class="price" id="price"><h2>From £5. No subscription.</h2><p>Pay only for what you make. Credits last a year.</p><a class="pill" href="#">Get early access →</a></div>
+<footer><span>© 2026 ClipGleam</span><span>hello@clipgleam.com</span></footer>
+
+<script>
+const EX=[["show_perfume","A perfume bottle bursts from a wave of liquid gold."],["show_cartoon","A dog, a cat and a mouse share a funny breakfast."],["hero_desert","A lone rider races a storm to warn the city."],["show_neon","A singer in neon rain, slow motion."],["show_clay","A clay fox explores a tiny village."]];
+let e=0;const th=document.getElementById("th"),pi=document.getElementById("pi");
+function ex(){th.style.backgroundImage=`url(../img/${EX[e][0]}.jpg)`;pi.placeholder=EX[e][1];e=(e+1)%EX.length}ex();setInterval(()=>{if(document.activeElement!==pi)ex()},4000);
+const SL=[["hero_desert","Cinematic films, scene by scene","A lone rider, a fortress, a storm. Your story, filmed shot by shot."],["show_perfume","Adverts that look expensive","Products that shine, with slow motion, light and music."],["show_cartoon","Cartoons with the same characters every episode","Pixar-style friends who keep their faces and voices."],["show_neon","Music videos cut to your track","Neon, rain and rhythm, timed to the beat."],["show_epic","Epic moments","Armies, mist and banners at dawn."]];
+const tr=document.getElementById("tr"),dt=document.getElementById("dt");let k=0;
+tr.innerHTML=SL.map(s=>`<div class="slide" style="background-image:url(../img/${s[0]}.jpg)"></div>`).join("");
+dt.innerHTML=SL.map(()=>"<i></i>").join("");
+function show(n){k=(n+SL.length)%SL.length;const w=tr.children[0].getBoundingClientRect().width+16;tr.style.transform=`translateX(${-k*w}px)`;document.getElementById("ct").textContent=SL[k][1];document.getElementById("cp").textContent=SL[k][2];[...dt.children].forEach((d,i)=>d.classList.toggle("on",i===k))}
+document.getElementById("nx").onclick=()=>{show(k+1);clearInterval(ai)};document.getElementById("pv").onclick=()=>{show(k-1);clearInterval(ai)};
+show(0);let ai=setInterval(()=>show(k+1),6000);addEventListener("resize",()=>show(k));
+const IM=["show_perfume","show_tiktok","show_cartoon","show_delta","show_neon","show_clay","show_youtube","show_scifi","hero_desert","show_presenter","show_epic","show_cricket"];
+const wd=[1.6,.75,1.6,1,1,1.6,1,.75,1.6,1,1.6,1];
+const row=a=>a.concat(a).map((n,i)=>`<div style="background-image:url(../img/${n}.jpg);aspect-ratio:${wd[i%wd.length]}"></div>`).join("");
+document.getElementById("m1").innerHTML=row(IM.slice(0,6));document.getElementById("m2").innerHTML=row(IM.slice(6));
+const ft=document.querySelectorAll(".ftabs button");let fi=0;ft.forEach((b,i)=>b.onclick=()=>{ft.forEach(x=>x.classList.remove("on"));b.classList.add("on");fi=i});
+setInterval(()=>{fi=(fi+1)%ft.length;ft.forEach((x,i)=>x.classList.toggle("on",i===fi))},3500);
+const T=[["TikTok","Rooftop dance promo","show_tiktok","0:15 · vertical"],["TikTok","Day in my life","show_youtube","0:30 · vertical"],["Adverts","Luxury perfume","show_perfume","0:30"],["Adverts","Restaurant special","show_presenter","0:20"],["Cartoons","Breakfast friends","show_cartoon","1:00"],["Cartoons","Clay village tale","show_clay","1:00"],["Films","Desert rider","hero_desert","2:00"],["Films","Space mission","show_scifi","1:30"],["Music","Neon rain","show_neon","3:00"],["YouTube","Nature documentary","show_delta","5:00"]];
+const cats=["All",...new Set(T.map(t=>t[0]))];let cc="All";
+function drawT(){document.getElementById("sg").innerHTML=cats.map(c=>`<button type="button" class="${c===cc?"on":""}" data-c="${c}">${c}</button>`).join("");
+document.getElementById("tg").innerHTML=T.filter(t=>cc==="All"||t[0]===cc).map(t=>`<div class="tc" style="background-image:url(../img/${t[2]}.jpg)"><span class="go">Use template →</span><div class="tx"><b>${t[1]}</b><small>${t[0]} · ${t[3]}</small></div></div>`).join("")}
+document.getElementById("sg").onclick=ev=>{const b=ev.target.closest("button");if(b){cc=b.dataset.c;drawT()}};drawT();
+</script>
+</body></html>
