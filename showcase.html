@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Showcase — ClipGleam</title>
+<meta name="description" content="The first videos being made with ClipGleam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="index.html"><i></i>Clip<b>Gleam</b></a>
+  <div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="services.html">Services</a><a href="showcase.html" class=on>Showcase</a><a href="pricing.html">Pricing</a><a href="learn.html">Learn</a></div>
+  <a class="btn" href="index.html#early">Get early access</a>
+</div></nav>
+
+<header class="page-hero"><div class="wrap">
+  <div class="eyebrow">Showcase</div>
+  <h1>Ideas we're <span class="gleam">making first.</span></h1>
+  <p>Our first videos are being made now. These are the projects in the queue. Each one will open as a recipe you can remake with your own idea.</p>
+  <span class="soon">Finished videos appear here as they are made</span>
+</div></header>
+<section style="padding-top:10px"><div class="wrap">
+  <div class="chips" style="justify-content:flex-start;margin-bottom:22px"><span class="chip on">All</span><span class="chip">Films</span><span class="chip">Shorts</span><span class="chip">Adverts</span><span class="chip">Music videos</span><span class="chip">Animation</span></div>
+  <div class="grid g4"><div class="tile reveal"><div class="art a1"><span>🏇</span></div><div class="meta"><b>The Last Caravan</b><small>Historic epic · film</small></div></div><div class="tile reveal"><div class="art a2"><span>🐶</span></div><div class="meta"><b>The Breakfast Song</b><small>Kids cartoon · episode</small></div></div><div class="tile reveal"><div class="art a3"><span>🧴</span></div><div class="meta"><b>Midnight Bloom</b><small>Product advert · 0:30</small></div></div><div class="tile reveal"><div class="art a4"><span>🎤</span></div><div class="meta"><b>Neon Rain</b><small>Music video</small></div></div><div class="tile reveal"><div class="art a5"><span>🏞️</span></div><div class="meta"><b>River of Kings</b><small>Documentary</small></div></div><div class="tile reveal"><div class="art a6"><span>👩‍🚀</span></div><div class="meta"><b>Deck Nine</b><small>Sci-fi short</small></div></div><div class="tile reveal"><div class="art a7"><span>🧑‍💼</span></div><div class="meta"><b>Market Minute</b><small>Presenter · 1:00</small></div></div><div class="tile reveal"><div class="art a8"><span>🏏</span></div><div class="meta"><b>The Final Over</b><small>Sports drama · trailer</small></div></div></div>
+</div></section>
+
+<section class="final" id="early"><div class="wrap">
+  <div class="eyebrow">Early access</div>
+  <h2>Be one of the <span class="gleam">first</span>.</h2>
+  <p>ClipGleam is opening to a small first group. Send us your idea and we'll save your place.</p>
+  <a class="btn" id="earlyBtn" href="mailto:hello@clipgleam.com?subject=ClipGleam%20early%20access">Get early access</a>
+</div></section>
+<footer><div class="wrap"><span>© 2026 ClipGleam · From idea to video</span><span>hello@clipgleam.com</span></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+</script>
+</body>
+</html>

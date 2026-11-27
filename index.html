@@ -3,137 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ClipGleam — AI videos, pay as you go</title>
-<meta name="description" content="Make videos with AI. Pay only for the minutes you make — no subscription. Early access now open.">
+<title>ClipGleam — type an idea, leave with a video</title>
+<meta name="description" content="AI video studio: script, characters, scenes, voices, music and edit from one sentence. Pay as you go. Early access open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#06100f; --bg2:#0b1a19; --card:#0f2321; --line:#1d3a37;
-  --ink:#eafaf7; --mute:#93b3ae; --teal:#3fd9c2; --teal2:#8ff0e0; --glow:rgba(63,217,194,.35);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
-a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-h1,h2,h3{font-family:"Bricolage Grotesque",Inter,sans-serif;line-height:1.05;letter-spacing:-.02em}
-.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:600}
-
-/* nav */
-nav{position:sticky;top:0;z-index:20;background:rgba(6,16,15,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{font-family:"Bricolage Grotesque";font-weight:800;font-size:22px;text-decoration:none;display:flex;align-items:center;gap:8px}
-.logo b{color:var(--teal)}
-.logo i{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--teal),#1f8f80);position:relative;overflow:hidden;display:inline-block}
-.logo i:after{content:"";position:absolute;inset:-50%;background:linear-gradient(115deg,transparent 40%,#fff9 50%,transparent 60%);animation:sweep 3.2s infinite}
-nav .links{display:flex;gap:22px;font-size:14px;color:var(--mute)}
-nav .links a{text-decoration:none}
-nav .links a:hover{color:var(--ink)}
-.btn{display:inline-block;background:var(--teal);color:#032521;font-weight:600;padding:12px 22px;border-radius:999px;text-decoration:none;border:0;cursor:pointer;font-size:15px;transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--glow)}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-@media(max-width:720px){nav .links{display:none}}
-
-/* hero */
-.hero{position:relative;padding:90px 0 70px;text-align:center}
-.hero:before{content:"";position:absolute;left:50%;top:-120px;width:900px;height:600px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(63,217,194,.18),transparent);pointer-events:none}
-.hero h1{font-size:clamp(44px,8vw,96px);font-weight:800;margin:18px 0}
-.gleam{background:linear-gradient(100deg,var(--teal) 0%,var(--teal) 40%,#fff 50%,var(--teal) 60%,var(--teal) 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
-@keyframes shine{from{background-position:150% 0}to{background-position:-100% 0}}
-@keyframes sweep{from{transform:translateX(-60%)}to{transform:translateX(60%)}}
-.hero p.lead{font-size:clamp(17px,2.2vw,21px);color:var(--mute);max-width:640px;margin:0 auto 30px}
-.hero .ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.note{font-size:13px;color:var(--mute);margin-top:14px}
-
-/* demo: prompt -> video */
-.demo{margin:60px auto 0;max-width:880px;display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:10px}
-.prompt,.screen{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:left;min-height:220px}
-.prompt small,.screen small{color:var(--mute);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-.typed{font-size:18px;margin-top:12px;min-height:110px}
-.typed:after{content:"▍";color:var(--teal);animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.arrow{font-size:30px;color:var(--teal);text-align:center;animation:pulse 1.6s ease-in-out infinite}
-@keyframes pulse{50%{transform:translateX(6px);opacity:.6}}
-.screen{position:relative;overflow:hidden;padding:0}
-.screen small{position:absolute;top:14px;left:16px;z-index:3}
-.scene{position:absolute;inset:0;background:linear-gradient(180deg,#123b4a,#2a6e6a 60%,#e9b77a 61%,#c9935a);}
-.sun{position:absolute;width:54px;height:54px;border-radius:50%;background:#ffd98a;box-shadow:0 0 40px #ffd98a;top:28%;left:70%;animation:sunmove 8s ease-in-out infinite alternate}
-@keyframes sunmove{to{top:18%;left:20%}}
-.hill{position:absolute;bottom:38%;width:160%;height:90px;left:-30%;background:#1f5a55;border-radius:50% 50% 0 0}
-.char{position:absolute;bottom:18%;left:-20%;font-size:46px;animation:walk 7s linear infinite}
-@keyframes walk{to{left:110%}}
-.bar{position:absolute;bottom:0;left:0;right:0;height:34px;background:rgba(0,0,0,.45);display:flex;align-items:center;gap:10px;padding:0 12px;z-index:3;font-size:12px;color:#cfe}
-.bar .track{flex:1;height:4px;background:#ffffff33;border-radius:4px;overflow:hidden}
-.bar .track i{display:block;height:100%;background:var(--teal);animation:prog 7s linear infinite}
-@keyframes prog{from{width:0}to{width:100%}}
-@media(max-width:720px){.demo{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
-
-/* sections */
-section{padding:90px 0}
-.sec-head{max-width:640px;margin-bottom:40px}
-.sec-head h2{font-size:clamp(32px,5vw,52px);margin-top:10px}
-.sec-head p{color:var(--mute);margin-top:12px}
-.grid{display:grid;gap:16px}
-.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-@media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.g3,.g4{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:transform .2s,border-color .2s}
-.card:hover{transform:translateY(-4px);border-color:var(--teal)}
-.card .n{font-family:"Bricolage Grotesque";font-weight:800;font-size:40px;color:var(--teal)}
-.card h3{font-size:22px;margin:6px 0 8px}
-.card p{color:var(--mute);font-size:15px}
-.emo{font-size:34px}
-
-/* pricing */
-.price{position:relative;text-align:center}
-.price .amt{font-family:"Bricolage Grotesque";font-weight:800;font-size:46px;margin:6px 0}
-.price .cr{color:var(--teal);font-weight:600}
-.price ul{list-style:none;color:var(--mute);font-size:14px;margin-top:12px}
-.price.pop{border-color:var(--teal);box-shadow:0 0 0 1px var(--teal),0 20px 60px rgba(63,217,194,.15)}
-.tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--teal);color:#032521;font-size:12px;font-weight:700;padding:3px 12px;border-radius:999px}
-.g5{grid-template-columns:repeat(5,1fr)}
-@media(max-width:1000px){.g5{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.g5{grid-template-columns:1fr 1fr}}
-.rates{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
-.rate{flex:1;min-width:240px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
-.rate b{font-size:24px;font-family:"Bricolage Grotesque";color:var(--teal2)}
-.rate span{display:block;color:var(--mute);font-size:14px}
-
-/* faq */
-details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:10px}
-summary{cursor:pointer;font-weight:600;list-style:none}
-summary::-webkit-details-marker{display:none}
-summary:after{content:"+";float:right;color:var(--teal);font-size:20px;line-height:1}
-details[open] summary:after{content:"–"}
-details p{color:var(--mute);margin-top:10px}
-
-/* cta */
-.final{text-align:center;background:radial-gradient(closest-side,rgba(63,217,194,.16),transparent),var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.final h2{font-size:clamp(34px,6vw,64px)}
-.final p{color:var(--mute);margin:14px auto 28px;max-width:520px}
-footer{padding:30px 0;color:var(--mute);font-size:13px}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
-</style>
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
-
 <nav><div class="wrap">
-  <a class="logo" href="#"><i></i>Clip<b>Gleam</b></a>
-  <div class="links"><a href="#how">How it works</a><a href="#make">What you can make</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-  <a class="btn" href="#early">Get early access</a>
+  <a class="logo" href="index.html"><i></i>Clip<b>Gleam</b></a>
+  <div class="links"><a href="index.html" class=on>Home</a><a href="studio.html">Studio</a><a href="services.html">Services</a><a href="showcase.html">Showcase</a><a href="pricing.html">Pricing</a><a href="learn.html">Learn</a></div>
+  <a class="btn" href="index.html#early">Get early access</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow">AI video · pay as you go</div>
-  <h1>Type it. <span class="gleam">Watch it.</span></h1>
-  <p class="lead">Turn an idea into a finished video with AI. No subscription — buy credits and pay only for the minutes you make.</p>
-  <div class="ctas"><a class="btn" href="#early">Get early access</a><a class="btn ghost" href="#pricing">See prices</a></div>
-  <div class="note">Early access — we are opening ClipGleam to a small first group.</div>
+  <div class="eyebrow">AI video studio · pay as you go</div>
+  <h1>Type an idea. <span class="gleam">Leave with a video.</span></h1>
+  <p class="lead">Script, characters, scenes, voices, music and edit, made for you from one sentence. No subscription: buy credits and pay only for what you make.</p>
+  <form class="ideabox" id="idea"><input id="ideaIn" placeholder="Type your idea… e.g. a happy dog and a clever mouse save the neighbourhood party" maxlength="300"><button class="btn" type="submit">Create</button></form>
+  <div class="chips" id="fmt"><button class="chip on" type="button">Short</button><button class="chip" type="button">YouTube</button><button class="chip" type="button">Film</button><button class="chip" type="button">Advert</button><button class="chip" type="button">Music video</button><button class="chip" type="button">Cartoon</button></div>
+  <div class="note">Early access: press Create and we'll save your idea and your place.</div>
 
   <div class="demo">
     <div class="prompt"><small>Your idea</small><div class="typed" id="typed"></div></div>
@@ -146,73 +35,63 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   </div>
 </div></header>
 
-<section id="how"><div class="wrap">
-  <div class="sec-head reveal"><div class="eyebrow">How it works</div><h2>Three steps. No editing skills.</h2></div>
-  <div class="grid g3">
-    <div class="card reveal"><div class="n">01</div><h3>Describe it</h3><p>Write what you want — a story, an advert, an explainer. Or paste your script.</p></div>
-    <div class="card reveal"><div class="n">02</div><h3>We make it</h3><p>AI builds the scenes, the voice and the music for you.</p></div>
-    <div class="card reveal"><div class="n">03</div><h3>Download &amp; post</h3><p>Get your video in the right shape for TikTok, Reels, YouTube or your website.</p></div>
-  </div>
-</div></section>
-
-<section id="make" style="padding-top:0"><div class="wrap">
-  <div class="sec-head reveal"><div class="eyebrow">What you can make</div><h2>One tool, many kinds of video.</h2></div>
+<section style="padding-top:20px"><div class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">What you can make</div><h2>One studio. Many kinds of video.</h2></div>
   <div class="grid g4">
-    <div class="card reveal"><div class="emo">🐾</div><h3>Cartoons</h3><p>Characters and short stories for kids' and pet channels.</p></div>
-    <div class="card reveal"><div class="emo">📣</div><h3>Adverts</h3><p>Short promos for your shop, restaurant or product.</p></div>
-    <div class="card reveal"><div class="emo">🎓</div><h3>Explainers</h3><p>Turn a lesson or a how-to into a clear video.</p></div>
-    <div class="card reveal"><div class="emo">📱</div><h3>Social shorts</h3><p>Vertical clips made for TikTok, Reels and Shorts.</p></div>
+    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a2"><span>🐶</span></div><div class="meta"><b>Kids cartoon</b><small>Series-ready characters</small></div></a>
+    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a3"><span>🧴</span></div><div class="meta"><b>Product advert</b><small>Bold titles, voice-over</small></div></a>
+    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a4"><span>🎤</span></div><div class="meta"><b>Music video</b><small>Cut to your track</small></div></a>
+    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a1"><span>🏇</span></div><div class="meta"><b>Short film</b><small>Scene by scene</small></div></a>
   </div>
 </div></section>
 
-<section id="pricing" style="padding-top:0"><div class="wrap">
-  <div class="sec-head reveal"><div class="eyebrow">Pricing</div><h2>Pay for minutes, not months.</h2><p>Buy a credit pack. Credits last 12 months. No subscription, nothing to cancel.</p></div>
+<section id="how" style="padding-top:0"><div class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">How it works</div><h2>Four steps. No editing skills.</h2></div>
+  <div class="grid g4">
+    <div class="card reveal"><div class="n">01</div><h3>Type your idea</h3><p>One sentence is enough. Add a script or pictures if you have them.</p></div>
+    <div class="card reveal"><div class="n">02</div><h3>Approve script &amp; cast</h3><p>ClipGleam writes the scenes and designs the characters. Change anything.</p></div>
+    <div class="card reveal"><div class="n">03</div><h3>Watch it being made</h3><p>Live progress, shot by shot. Every shot passes a quality check.</p></div>
+    <div class="card reveal"><div class="n">04</div><h3>Export &amp; share</h3><p>TikTok, Reels, YouTube or widescreen, ready to post.</p></div>
+  </div>
+  <p class="reveal" style="margin-top:24px"><a class="btn ghost" href="studio.html">Take the Studio tour →</a></p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">Pricing</div><h2>Pay for minutes, not months.</h2><p>Credit packs from £5. Credits last 12 months. No subscription, nothing to cancel.</p></div>
   <div class="rates reveal">
-    <div class="rate"><b>1 credit = 2 min</b><span>Template video (stock scenes, AI voice, captions)</span></div>
-    <div class="rate"><b>8 credits = 1 min</b><span>Fully AI video (every scene generated for you)</span></div>
+    <div class="rate"><b>£5</b><span>Starter pack · 20 credits</span></div>
+    <div class="rate"><b>8 credits = 1 min</b><span>Fully AI video</span></div>
+    <div class="rate"><b>1 credit = 2 min</b><span>Template video</span></div>
   </div>
-  <div class="grid g5">
-    <div class="card price reveal"><h3>Starter</h3><div class="amt">£5</div><div class="cr">20 credits</div><ul><li>40 min template</li><li>or 2.5 min AI</li></ul></div>
-    <div class="card price reveal"><h3>Creator</h3><div class="amt">£10</div><div class="cr">40 credits</div><ul><li>80 min template</li><li>or 5 min AI</li></ul></div>
-    <div class="card price pop reveal"><span class="tag">Most popular</span><h3>Pro</h3><div class="amt">£20</div><div class="cr">88 credits</div><ul><li>10% bonus credits</li><li>11 min AI</li></ul></div>
-    <div class="card price reveal"><h3>Studio</h3><div class="amt">£50</div><div class="cr">240 credits</div><ul><li>20% bonus credits</li><li>30 min AI</li></ul></div>
-    <div class="card price reveal"><h3>Agency</h3><div class="amt">£100</div><div class="cr">512 credits</div><ul><li>28% bonus credits</li><li>64 min AI</li></ul></div>
-  </div>
-</div></section>
-
-<section id="faq" style="padding-top:0"><div class="wrap" style="max-width:780px">
-  <div class="sec-head reveal"><div class="eyebrow">Questions</div><h2>Good to know</h2></div>
-  <details class="reveal"><summary>Is ClipGleam open now?</summary><p>We are in early access. Leave your email and we will invite you as soon as your place is ready.</p></details>
-  <details class="reveal"><summary>Do I need a subscription?</summary><p>No. You buy credits once and use them when you want. They last 12 months.</p></details>
-  <details class="reveal"><summary>How long does a video take?</summary><p>A short AI clip takes about 5–10 minutes. A finished minute of fully AI video takes about 20–40 minutes. Template videos are faster.</p></details>
-  <details class="reveal"><summary>Who owns the videos?</summary><p>You do. Use them on your own channels and for your business.</p></details>
-  <details class="reveal"><summary>Which languages?</summary><p>English first. More voices and languages are on the way.</p></details>
+  <a class="btn ghost reveal" href="pricing.html">All prices →</a>
 </div></section>
 
 <section class="final" id="early"><div class="wrap">
   <div class="eyebrow">Early access</div>
   <h2>Be one of the <span class="gleam">first</span>.</h2>
-  <p>We are opening ClipGleam to a small first group. Send us a line and we'll save your place.</p>
-  <a class="btn" href="mailto:hello@clipgleam.com?subject=ClipGleam%20early%20access">Get early access</a>
+  <p>ClipGleam is opening to a small first group. Send us your idea and we'll save your place.</p>
+  <a class="btn" id="earlyBtn" href="mailto:hello@clipgleam.com?subject=ClipGleam%20early%20access">Get early access</a>
 </div></section>
-
-<footer><div class="wrap"><span>© 2026 ClipGleam</span><span>hello@clipgleam.com</span></div></footer>
-
+<footer><div class="wrap"><span>© 2026 ClipGleam · From idea to video</span><span>hello@clipgleam.com</span></div></footer>
 <script>
-// typed prompt demo
-const ideas=["A happy dog walks through the park at sunset 🌅","30-second advert for a chicken shop in Hayes 🍗","Explain how solar panels work, for kids ☀️"];
-const chars=["🐕","🍗","☀️"];
-const el=document.getElementById("typed"),ch=document.getElementById("char");
-let i=0;
-function play(){
-  const t=ideas[i%ideas.length];ch.textContent=chars[i%chars.length];
-  let k=0;el.textContent="";
-  const iv=setInterval(()=>{el.textContent=t.slice(0,++k);if(k>=t.length){clearInterval(iv);setTimeout(()=>{i++;play()},3500)}},45);
-}
-play();
-// reveal on scroll
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+const ideas=["A happy dog walks through the park at sunset 🌅","30-second advert for a chicken shop in Hayes 🍗","A lone rider races a desert storm to warn the city 🏜️"];
+const chars=["🐕","🍗","🏇"];
+const el=document.getElementById("typed"),ch=document.getElementById("char");let i=0;
+function play(){const t=ideas[i%ideas.length];ch.textContent=chars[i%chars.length];let k=0;el.textContent="";
+const iv=setInterval(()=>{el.textContent=t.slice(0,++k);if(k>=t.length){clearInterval(iv);setTimeout(()=>{i++;play()},3500)}},45);}
+play();
+let fmt="Short";
+document.querySelectorAll("#fmt .chip").forEach(c=>c.onclick=()=>{document.querySelectorAll("#fmt .chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");fmt=c.textContent;});
+document.getElementById("idea").onsubmit=e=>{e.preventDefault();
+const v=document.getElementById("ideaIn").value.trim();
+const b=document.getElementById("earlyBtn");
+b.href="mailto:hello@clipgleam.com?subject="+encodeURIComponent("ClipGleam early access")+"&body="+encodeURIComponent("My idea ("+fmt+"): "+v);
+document.getElementById("early").scrollIntoView({behavior:"smooth"});
+b.textContent=v?"Send my idea & save my place":"Get early access";};
+
 </script>
 </body>
 </html>

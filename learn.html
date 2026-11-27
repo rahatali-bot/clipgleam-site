@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn — ClipGleam</title>
+<meta name="description" content="Quick start, shot language and FAQ for ClipGleam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="index.html"><i></i>Clip<b>Gleam</b></a>
+  <div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="services.html">Services</a><a href="showcase.html">Showcase</a><a href="pricing.html">Pricing</a><a href="learn.html" class=on>Learn</a></div>
+  <a class="btn" href="index.html#early">Get early access</a>
+</div></nav>
+
+<header class="page-hero"><div class="wrap">
+  <div class="eyebrow">Learn</div>
+  <h1>Good in <span class="gleam">ten minutes.</span></h1>
+  <p>Everything you need to get a great video from your first idea.</p>
+</div></header>
+<section style="padding-top:10px"><div class="wrap">
+  <div class="grid g3">
+    <div class="card reveal"><div class="n">⚡</div><h3>Quick start</h3><p>Type one clear sentence: who, where, what happens. "A dog guards a mouse from the neighbour's cat in a sunny garden."</p></div>
+    <div class="card reveal"><div class="n">🎥</div><h3>Shot language</h3><p>Wide to show where we are. Close-up for feelings. Move the camera only with a reason. The Studio plans this for you.</p></div>
+    <div class="card reveal"><div class="n">✍️</div><h3>Ideas that film well</h3><p>One main character, one problem, one twist. Short scenes. A clear ending.</p></div>
+  </div>
+</div></section>
+<section style="padding-top:0"><div class="wrap" style="max-width:780px">
+  <div class="sec-head reveal"><div class="eyebrow">Questions</div><h2>FAQ</h2></div>
+  <details class="reveal"><summary>Is ClipGleam open now?</summary><p>We are in early access. Leave your email and we'll invite you as soon as your place is ready.</p></details><details class="reveal"><summary>Do I need a subscription?</summary><p>No. Buy credits once and use them when you want. They last 12 months.</p></details><details class="reveal"><summary>Who owns the videos?</summary><p>You do. Use them on your own channels and for your business.</p></details><details class="reveal"><summary>Can I keep the same character across episodes?</summary><p>Yes, that's what the cast lock is for: one face and one voice, kept the same in every scene.</p></details><details class="reveal"><summary>Which languages?</summary><p>English first. More voices and languages are on the way.</p></details><details class="reveal"><summary>Can I upload my own face or voice?</summary><p>Yes, but only your own, or someone who has given their permission.</p></details>
+</div></section>
+
+<section class="final" id="early"><div class="wrap">
+  <div class="eyebrow">Early access</div>
+  <h2>Be one of the <span class="gleam">first</span>.</h2>
+  <p>ClipGleam is opening to a small first group. Send us your idea and we'll save your place.</p>
+  <a class="btn" id="earlyBtn" href="mailto:hello@clipgleam.com?subject=ClipGleam%20early%20access">Get early access</a>
+</div></section>
+<footer><div class="wrap"><span>© 2026 ClipGleam · From idea to video</span><span>hello@clipgleam.com</span></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Services — ClipGleam</title>
+<meta name="description" content="Films, shorts, adverts, music videos, animation, presenters and explainers from one AI studio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="index.html"><i></i>Clip<b>Gleam</b></a>
+  <div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="services.html" class=on>Services</a><a href="showcase.html">Showcase</a><a href="pricing.html">Pricing</a><a href="learn.html">Learn</a></div>
+  <a class="btn" href="index.html#early">Get early access</a>
+</div></nav>
+
+<header class="page-hero"><div class="wrap">
+  <div class="eyebrow">Services</div>
+  <h1>One studio.<br><span class="gleam">Anything you can film.</span></h1>
+  <p>Each one opens the same Studio with the right format already chosen. If it's not on the list, type it into the idea box anyway.</p>
+</div></header>
+<section style="padding-top:10px"><div class="wrap">
+  <div class="grid g4"><div class="card reveal"><div class="emo">🎬</div><h3>Films</h3><p>Short films scene by scene, with the same cast all the way through.</p></div><div class="card reveal"><div class="emo">📱</div><h3>Shorts</h3><p>Vertical 15–60 second videos for TikTok, Reels and Shorts, captions on.</p></div><div class="card reveal"><div class="emo">📣</div><h3>Adverts</h3><p>Product and shop promos with bold titles and a voice-over.</p></div><div class="card reveal"><div class="emo">🎵</div><h3>Music videos</h3><p>Upload a track. We plan the visuals and cut them to the beat.</p></div><div class="card reveal"><div class="emo">🐾</div><h3>Animation</h3><p>3D cartoon, anime or storybook style. Series-ready recurring characters.</p></div><div class="card reveal"><div class="emo">🧑‍💼</div><h3>Presenters</h3><p>A presenter reads your script to camera, with captions.</p></div><div class="card reveal"><div class="emo">🗣️</div><h3>Voice &amp; narration</h3><p>Narration, audio stories and voice-overs, with visuals if you want them.</p></div><div class="card reveal"><div class="emo">🎓</div><h3>Explainers</h3><p>Turn a lesson or a how-to into a clear, simple video.</p></div></div>
+  <div class="sec-head reveal" style="margin-top:60px"><div class="eyebrow">Styles</div><h2>Pick a look.</h2></div>
+  <div class="reveal"><span class="pill t">Cinematic realism</span><span class="pill t">3D cartoon</span><span class="pill t">Anime</span><span class="pill t">Documentary</span><span class="pill t">Vintage film</span><span class="pill t">Noir</span></div>
+</div></section>
+
+<section class="final" id="early"><div class="wrap">
+  <div class="eyebrow">Early access</div>
+  <h2>Be one of the <span class="gleam">first</span>.</h2>
+  <p>ClipGleam is opening to a small first group. Send us your idea and we'll save your place.</p>
+  <a class="btn" id="earlyBtn" href="mailto:hello@clipgleam.com?subject=ClipGleam%20early%20access">Get early access</a>
+</div></section>
+<footer><div class="wrap"><span>© 2026 ClipGleam · From idea to video</span><span>hello@clipgleam.com</span></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+</script>
+</body>
+</html>

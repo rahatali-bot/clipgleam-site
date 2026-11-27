@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — ClipGleam</title>
+<meta name="description" content="Credit packs from £5. No subscription. Credits last 12 months.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="logo" href="index.html"><i></i>Clip<b>Gleam</b></a>
+  <div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="services.html">Services</a><a href="showcase.html">Showcase</a><a href="pricing.html" class=on>Pricing</a><a href="learn.html">Learn</a></div>
+  <a class="btn" href="index.html#early">Get early access</a>
+</div></nav>
+
+<header class="page-hero"><div class="wrap">
+  <div class="eyebrow">Pricing</div>
+  <h1>Pay for minutes,<br><span class="gleam">not months.</span></h1>
+  <p>Buy a credit pack and use it when you want. Credits last 12 months. No subscription, nothing to cancel. Every pack gets the whole Studio.</p>
+</div></header>
+<section style="padding-top:10px"><div class="wrap">
+  <div class="rates reveal">
+    <div class="rate"><b>8 credits = 1 min</b><span>Fully AI video: every scene generated for you (about £2 a minute)</span></div>
+    <div class="rate"><b>1 credit = 2 min</b><span>Template video: stock scenes, AI voice and captions (about 13p a minute)</span></div>
+  </div>
+  <div class="grid g5"><div class="card price  reveal"><h3>Starter</h3><div class="amt">£5</div><div class="cr">20 credits</div><ul><li>40 min template</li><li>or 2.5 min AI</li></ul></div><div class="card price  reveal"><h3>Creator</h3><div class="amt">£10</div><div class="cr">40 credits</div><ul><li>80 min template</li><li>or 5 min AI</li></ul></div><div class="card price pop reveal"><span class=tag>Most popular</span><h3>Pro</h3><div class="amt">£20</div><div class="cr">88 credits</div><ul><li>10% bonus credits</li><li>11 min AI</li></ul></div><div class="card price  reveal"><h3>Studio</h3><div class="amt">£50</div><div class="cr">240 credits</div><ul><li>20% bonus credits</li><li>30 min AI</li></ul></div><div class="card price  reveal"><h3>Agency</h3><div class="amt">£100</div><div class="cr">512 credits</div><ul><li>28% bonus credits</li><li>64 min AI</li></ul></div></div>
+  <div class="sec-head reveal" style="margin-top:60px"><div class="eyebrow">What credits buy</div><h2>Examples</h2></div>
+  <table class="cmp reveal">
+    <tr><th>Video</th><th>Type</th><th>Credits</th></tr>
+    <tr><td>60-second TikTok short</td><td>Fully AI</td><td>8</td></tr>
+    <tr><td>30-second advert</td><td>Fully AI</td><td>4</td></tr>
+    <tr><td>3-minute cartoon episode</td><td>Fully AI</td><td>24</td></tr>
+    <tr><td>10-minute YouTube explainer</td><td>Template</td><td>5</td></tr>
+  </table>
+  <div class="sec-head reveal" style="margin-top:60px"><div class="eyebrow">How long it takes</div><h2>About how long</h2></div>
+  <div class="grid g3">
+    <div class="card reveal"><h3>Short AI clip</h3><p>about 5–10 minutes</p></div>
+    <div class="card reveal"><h3>1 minute of fully AI video</h3><p>about 20–40 minutes</p></div>
+    <div class="card reveal"><h3>Template video</h3><p>about 7 minutes per finished minute</p></div>
+  </div>
+  <p class="note reveal">Times depend on length and how busy the queue is.</p>
+</div></section>
+
+<section class="final" id="early"><div class="wrap">
+  <div class="eyebrow">Early access</div>
+  <h2>Be one of the <span class="gleam">first</span>.</h2>
+  <p>ClipGleam is opening to a small first group. Send us your idea and we'll save your place.</p>
+  <a class="btn" id="earlyBtn" href="mailto:hello@clipgleam.com?subject=ClipGleam%20early%20access">Get early access</a>
+</div></section>
+<footer><div class="wrap"><span>© 2026 ClipGleam · From idea to video</span><span>hello@clipgleam.com</span></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+</script>
+</body>
+</html>
