@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample G · Storyboard Desk</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Courier+Prime:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a director's desk — sketch-to-film hero, typewriter script, pinned index-card templates */
+:root{--paper:#f6f0e4;--paper2:#efe6d3;--ink:#1f1b16;--mute:#6f675b;--red:#d6402f;--blue:#2f5fd6;--tape:rgba(255,226,140,.75)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden;background-image:radial-gradient(rgba(31,27,22,.06) 1px,transparent 1px);background-size:22px 22px}
+button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}
+.tag{position:fixed;bottom:14px;left:14px;z-index:80;background:#1f1b16;color:#fff;font:600 11px Inter;padding:5px 10px;border-radius:99px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px max(16px,5vw)}
+.logo{font:700 30px Caveat,cursive}.logo span{color:var(--red)}
+.nb{border:2px solid var(--ink);border-radius:10px;padding:9px 16px;font-weight:600;background:#fff;box-shadow:3px 3px 0 var(--ink)}
+.hero{display:grid;grid-template-columns:1fr 1.25fr;gap:50px;align-items:center;padding:30px max(16px,5vw) 70px;max-width:1400px;margin:0 auto}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+h1{font:400 clamp(46px,6.5vw,92px)/.98 "DM Serif Display",serif}
+h1 em{color:var(--red)}
+.scrib{font:700 26px Caveat;color:var(--blue);transform:rotate(-3deg);display:inline-block;margin:10px 0 18px}
+.script{background:#fff;border:1px solid #d9cfbd;box-shadow:0 14px 40px rgba(60,40,10,.12);padding:22px 24px;font:15px/1.7 "Courier Prime",monospace;position:relative}
+.script:before{content:"";position:absolute;left:-12px;top:22px;width:24px;height:60px;background:var(--tape);transform:rotate(-8deg)}
+.script .h{font-weight:700}
+.script textarea{width:100%;border:0;outline:none;resize:none;font:15px/1.7 "Courier Prime",monospace;color:var(--ink);background:none;min-height:52px}
+.go{margin-top:12px;border:0;border-radius:10px;padding:12px 20px;background:var(--red);color:#fff;font-weight:700;box-shadow:3px 3px 0 var(--ink)}
+.go:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+/* sketch to film */
+.board{position:relative;aspect-ratio:16/10;border:10px solid #fff;box-shadow:0 20px 50px rgba(60,40,10,.25);transform:rotate(1.2deg);overflow:hidden;cursor:ew-resize;background:#fff;user-select:none;touch-action:pan-y}
+.board .film,.board .sketch{position:absolute;inset:0;background:center/cover}
+.board .sketch{filter:grayscale(1) contrast(1.6) brightness(1.25);mix-blend-mode:normal}
+.board .sketch:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-35deg,rgba(255,255,255,.0) 0 3px,rgba(255,255,255,.35) 3px 4px);mix-blend-mode:screen}
+.board .line{position:absolute;top:0;bottom:0;width:3px;background:var(--red);box-shadow:0 0 0 2px #fff}
+.board .line:after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:18px;border:3px solid #fff}
+.board .lab{position:absolute;top:12px;font:700 22px Caveat;padding:2px 10px;background:#fff;border:2px solid var(--ink)}
+.l1{left:12px}.l2{right:12px}
+.note{font:700 22px Caveat;color:var(--mute);text-align:center;margin-top:16px;transform:rotate(-1deg)}
+.thumbs{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.thumbs button{width:64px;height:42px;border:3px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.2);background:center/cover}
+.thumbs button.on{outline:3px solid var(--red)}
+/* cork board templates */
+.cork{margin:30px max(10px,3vw) 0;padding:60px max(16px,4vw) 80px;background:#c89c6a;background-image:radial-gradient(rgba(80,50,20,.25) 1.4px,transparent 1.6px),radial-gradient(rgba(255,240,210,.18) 1px,transparent 1.2px);background-size:9px 9px,13px 13px;border-radius:18px;box-shadow:inset 0 0 0 12px #8a6236,inset 0 0 40px rgba(0,0,0,.35)}
+.cork h2{font:400 clamp(36px,5vw,60px) "DM Serif Display";color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.3);text-align:center}
+.cork p.s{text-align:center;color:#fff3dc;font:700 24px Caveat;margin-bottom:34px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:30px 26px}
+.card{background:#fffdf7;padding:10px 10px 14px;box-shadow:0 10px 22px rgba(0,0,0,.3);position:relative;transition:transform .25s}
+.card:nth-child(odd){transform:rotate(-2.2deg)}.card:nth-child(even){transform:rotate(1.8deg)}.card:nth-child(3n){transform:rotate(-.6deg)}
+.card:hover{transform:rotate(0) scale(1.05);z-index:3}
+.card:before{content:"";position:absolute;top:-10px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ff8a7a,var(--red) 60%,#7a1d12);box-shadow:0 3px 4px rgba(0,0,0,.4)}
+.card .im{aspect-ratio:4/3;background:center/cover}
+.card b{display:block;font:700 26px/1 Caveat;margin-top:10px}
+.card small{color:var(--mute);font-size:13px}
+.card .use{position:absolute;right:10px;bottom:12px;border:2px solid var(--ink);background:#fff;font-weight:600;font-size:12px;padding:4px 10px;border-radius:99px}
+.card .use:hover{background:var(--ink);color:#fff}
+.steps{max-width:1200px;margin:0 auto;padding:90px max(16px,5vw);display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+.steps div{background:#fff;padding:24px;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.steps span{font:700 46px Caveat;color:var(--red)}
+.steps h3{font:400 28px "DM Serif Display";margin:4px 0 6px}
+.steps p{color:var(--mute)}
+.price{text-align:center;padding:20px 16px 110px}
+.price h2{font:400 clamp(38px,5vw,64px) "DM Serif Display"}
+.price .stick{display:inline-block;background:#fff59a;padding:22px 26px;box-shadow:0 12px 24px rgba(0,0,0,.18);transform:rotate(-2deg);font:700 30px/1.2 Caveat;margin-top:24px}
+footer{border-top:2px dashed #cbbfa8;padding:24px max(16px,5vw);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--mute);font-size:13px}
+</style></head><body>
+<div class="tag">Sample G · Storyboard Desk</div>
+<nav><span class="logo">Clip<span>Gleam</span></span><a class="nb" href="#tpl">See templates</a></nav>
+<header class="hero">
+ <div>
+  <h1>From a scribble<br>to a <em>scene.</em></h1>
+  <span class="scrib">you write it ✎ we film it 🎬</span>
+  <div class="script"><div class="h">INT. YOUR IDEA — DAY</div><textarea id="idea" rows="2" placeholder="A dog who dreams of flying a plane takes his first lesson…"></textarea><button class="go" type="button" id="go">Film this scene →</button></div>
+ </div>
+ <div>
+  <div class="board" id="bd"><div class="film" id="fm"></div><div class="sketch" id="sk"></div><span class="lab l1">sketch</span><span class="lab l2">film</span><div class="line" id="ln"></div></div>
+  <p class="note">↔ drag across the picture: sketch becomes film</p>
+  <div class="thumbs" id="th"></div>
+ </div>
+</header>
+<section class="cork" id="tpl"><h2>Pick a card. Make it yours.</h2><p class="s">ready-made templates, change anything</p><div class="cards" id="cards"></div></section>
+<section class="steps"><div><span>1</span><h3>Write a line</h3><p>One sentence on the script page.</p></div><div><span>2</span><h3>Approve the board</h3><p>See every shot as a sketch first. Change anything.</p></div><div><span>3</span><h3>Get the film</h3><p>Real scenes, voices and music. Ready to share.</p></div></section>
+<div class="price"><h2>From £5. No subscription.</h2><div class="stick">20 credits ≈ 2½ min of AI film<br>credits last a year ✓</div></div>
+<footer><span>© 2026 ClipGleam</span><span>hello@clipgleam.com</span></footer>
+<script>
+const IM=["show_cartoon","hero_desert","show_perfume","show_clay","show_neon"];let cur=0;
+const fm=document.getElementById("fm"),sk=document.getElementById("sk"),ln=document.getElementById("ln"),bd=document.getElementById("bd");
+function setImg(i){cur=i;fm.style.backgroundImage=sk.style.backgroundImage=`url(../img/${IM[i]}.jpg)`;[...document.getElementById("th").children].forEach((b,k)=>b.classList.toggle("on",k===i))}
+document.getElementById("th").innerHTML=IM.map((n,i)=>`<button type="button" aria-label="Scene ${i+1}" style="background-image:url(../img/${n}.jpg)"></button>`).join("");
+document.getElementById("th").onclick=e=>{const b=e.target.closest("button");if(b)setImg([...b.parentNode.children].indexOf(b))};
+function wipe(p){p=Math.max(0,Math.min(1,p));sk.style.clipPath=`inset(0 ${100-p*100}% 0 0)`;ln.style.left=`calc(${p*100}% - 1.5px)`}
+bd.addEventListener("pointermove",e=>{const r=bd.getBoundingClientRect();wipe((e.clientX-r.left)/r.width);auto=false});
+let auto=true,t=0;(function a(){if(auto){t+=.006;wipe(.5+.42*Math.sin(t))}requestAnimationFrame(a)})();
+bd.addEventListener("pointerleave",()=>auto=true);
+setImg(0);setInterval(()=>{if(auto)setImg((cur+1)%IM.length)},7000);
+const T=[["Breakfast friends","Cartoon · 1:00","show_cartoon"],["Luxury perfume","Advert · 0:30","show_perfume"],["Rooftop dance","TikTok · 0:15","show_tiktok"],["The desert rider","Film · 2:00","hero_desert"],["Fox lane","Claymation · 1:00","show_clay"],["Neon rain","Music video · 3:00","show_neon"],["Creator intro","YouTube · 0:10","show_youtube"],["Deck nine","Sci-fi · 1:30","show_scifi"]];
+document.getElementById("cards").innerHTML=T.map(t=>`<div class="card"><div class="im" style="background-image:url(../img/${t[2]}.jpg)"></div><b>${t[0]}</b><small>${t[1]}</small><button class="use" type="button">use →</button></div>`).join("");
+document.getElementById("go").onclick=()=>{const b=document.getElementById("go");b.textContent="✓ Scene saved — the studio films it";setTimeout(()=>b.textContent="Film this scene →",2500)};
+</script>
+</body></html>

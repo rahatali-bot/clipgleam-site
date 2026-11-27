@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample H · Premiere Night</title>
+<link href="https://fonts.googleapis.com/css2?family=Limelight&family=Oswald:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a cinema on premiere night — marquee bulbs, curtains opening onto the screen, movie-poster templates */
+:root{--bg:#12060a;--ink:#fff4e6;--mute:#c9a9a0;--red:#a3122a;--red2:#d8203f;--gold:#f6c35c;--bulb:#ffe9a8}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}
+.tag{position:fixed;bottom:14px;left:14px;z-index:80;background:#fff;color:#000;font:600 11px Inter;padding:5px 10px;border-radius:99px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px max(16px,4vw)}
+.logo{font:400 26px Limelight,serif;color:var(--gold);text-shadow:0 0 18px rgba(246,195,92,.6)}
+.nb{background:var(--gold);color:#2a0d00;border-radius:99px;padding:9px 18px;font-weight:700}
+/* marquee */
+.marquee{position:relative;max-width:980px;margin:10px auto 0;padding:22px 30px;border-radius:16px;background:linear-gradient(#2a0a10,#1a0508);border:3px solid var(--gold);text-align:center;box-shadow:0 0 40px rgba(246,195,92,.25)}
+.bulbs{position:absolute;left:10px;right:10px;height:12px;display:flex;justify-content:space-between}
+.bulbs.t{top:-7px}.bulbs.b{bottom:-7px}
+.bulbs i{width:12px;height:12px;border-radius:50%;background:var(--bulb);box-shadow:0 0 10px var(--bulb),0 0 20px #ffcf5a;animation:chase 1.2s steps(1) infinite}
+.bulbs i:nth-child(3n+2){animation-delay:.4s}.bulbs i:nth-child(3n){animation-delay:.8s}
+@keyframes chase{0%{opacity:1}33%{opacity:.25}66%{opacity:.25}}
+.marquee small{font:700 14px Oswald;letter-spacing:.35em;color:var(--gold)}
+.marquee h1{font:400 clamp(34px,6vw,74px)/1.05 Limelight,serif;color:#fff;text-shadow:0 0 24px rgba(255,233,168,.55)}
+/* stage */
+.stage{position:relative;max-width:1180px;margin:34px auto 0;padding:0 16px}
+.screen{position:relative;aspect-ratio:2.2/1;border-radius:8px;overflow:hidden;background:#000;box-shadow:0 0 120px rgba(255,220,160,.25)}
+.screen .sh{position:absolute;inset:0;background:center/cover;opacity:0;transition:opacity 1.2s}
+.screen .sh.on{opacity:1;animation:kb 9s ease-out}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1)}}
+.screen .cap{position:absolute;left:0;right:0;bottom:0;padding:40px 22px 16px;background:linear-gradient(transparent,rgba(0,0,0,.8));font:500 15px Oswald;letter-spacing:.18em;text-transform:uppercase}
+.curtain{position:absolute;top:-30px;bottom:-30px;width:52%;z-index:4;background:repeating-linear-gradient(90deg,#6d0a1c 0 18px,var(--red) 18px 40px,#c41a36 40px 48px,var(--red) 48px 66px);box-shadow:inset 0 -40px 60px rgba(0,0,0,.5);transition:transform 2.2s cubic-bezier(.7,0,.25,1)}
+.curtain.l{left:0;transform-origin:left}.curtain.r{right:0;transform-origin:right}
+.open .curtain.l{transform:translateX(-92%) scaleX(.5)}.open .curtain.r{transform:translateX(92%) scaleX(.5)}
+.valance{position:absolute;left:0;right:0;top:-40px;height:60px;z-index:5;background:repeating-radial-gradient(ellipse at 50% 0,#7a0b1f 0 30px,#a3122a 30px 60px);border-bottom:6px solid var(--gold);border-radius:0 0 30px 30px}
+.seats{height:60px;margin:-10px 16px 0;background:radial-gradient(ellipse at 50% 120%,#000 40%,transparent 41%) 0 0/70px 60px repeat-x;opacity:.9}
+/* ticket booth */
+.booth{max-width:860px;margin:30px auto 0;padding:0 16px}
+.form{display:flex;gap:10px;background:#250910;border:2px solid var(--gold);border-radius:99px;padding:8px;box-shadow:0 0 30px rgba(246,195,92,.2)}
+.form input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:16px Inter;padding:0 16px;outline:none}
+.form button{border:0;border-radius:99px;padding:13px 24px;background:linear-gradient(var(--red2),var(--red));color:#fff;font:700 16px Oswald;letter-spacing:.08em;box-shadow:0 0 18px rgba(216,32,63,.6)}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.chips span{border:1px solid #5a2a30;border-radius:99px;padding:6px 14px;font-size:13px;color:var(--mute)}
+/* posters */
+section{padding:100px max(16px,4vw) 40px}
+.sh2{text-align:center;font:400 clamp(34px,5vw,60px) Limelight;color:var(--gold);margin-bottom:8px}
+.sub2{text-align:center;color:var(--mute);margin-bottom:40px}
+.posters{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;max-width:1300px;margin:0 auto}
+.poster{position:relative;aspect-ratio:2/3;border-radius:6px;overflow:hidden;background:center/cover;box-shadow:0 18px 40px rgba(0,0,0,.6);transition:transform .35s,box-shadow .35s}
+.poster:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:0 24px 60px rgba(246,195,92,.25)}
+.poster:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),transparent 30%,transparent 55%,rgba(0,0,0,.92))}
+.poster .top{position:absolute;top:12px;left:0;right:0;text-align:center;font:700 11px Oswald;letter-spacing:.35em;color:var(--gold)}
+.poster .bt{position:absolute;left:12px;right:12px;bottom:14px;text-align:center}
+.poster b{display:block;font:700 26px/1 Oswald;text-transform:uppercase;letter-spacing:.04em}
+.poster small{display:block;font:500 11px Oswald;letter-spacing:.25em;color:#e6cfc5;margin-top:6px}
+.poster button{margin-top:10px;border:1.5px solid var(--gold);background:rgba(0,0,0,.4);color:var(--gold);border-radius:99px;padding:6px 14px;font:600 12px Inter;opacity:0;transition:.3s}
+.poster:hover button{opacity:1}@media(hover:none){.poster button{opacity:1}}
+.combo{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;max-width:1000px;margin:0 auto}
+.cb{flex:1;min-width:220px;border-radius:18px;padding:24px;text-align:center;background:linear-gradient(160deg,#2a0a10,#1a0508);border:1px solid #4a1a22}
+.cb.hot{border:2px solid var(--gold);box-shadow:0 0 40px rgba(246,195,92,.2)}
+.cb .ic{font-size:38px}.cb b{display:block;font:700 40px Oswald;color:var(--gold)}.cb p{color:var(--mute);font-size:14px}
+footer{text-align:center;padding:40px 16px;color:#8a6a62;font-size:13px}
+@media(prefers-reduced-motion:reduce){.bulbs i,.screen .sh.on{animation:none}.curtain{transition:none}}
+</style></head><body>
+<div class="tag">Sample H · Premiere Night</div>
+<nav><span class="logo">ClipGleam</span><a class="nb" href="#posters">Now showing</a></nav>
+<div style="padding:0 16px"><div class="marquee"><div class="bulbs t" id="bt"></div><small>TONIGHT · WORLD PREMIERE</small><h1>Now showing: your idea</h1><div class="bulbs b" id="bb"></div></div></div>
+<div class="stage" id="stage"><div class="valance"></div><div class="screen" id="scr"><div class="curtain l"></div><div class="curtain r"></div><div class="cap" id="cap"></div></div></div>
+<div class="seats"></div>
+<div class="booth"><form class="form" onsubmit="event.preventDefault();this.querySelector('button').textContent='🎟️ Ticket saved!'"><input placeholder="Tonight's film: a dog who dreams of flying a plane…" aria-label="Your idea"><button>Roll the film</button></form>
+<div class="chips"><span>🐶 Cartoon</span><span>✨ Advert</span><span>🎤 Music video</span><span>📱 TikTok</span><span>🦊 Clay</span><span>🎬 Film</span></div></div>
+<section id="posters"><h2 class="sh2">Now showing</h2><p class="sub2">Templates ready to remake with your own idea</p><div class="posters" id="ps"></div></section>
+<section><h2 class="sh2">Popcorn prices</h2><p class="sub2">No subscription. Credits last a year.</p>
+<div class="combo"><div class="cb"><div class="ic">🍿</div><b>£5</b><p>Small · 20 credits<br>about 2½ min of AI film</p></div><div class="cb hot"><div class="ic">🍿🍿</div><b>£20</b><p>Large · 88 credits<br>about 11 min · most popular</p></div><div class="cb"><div class="ic">🍿🍿🍿</div><b>£50</b><p>Family · 240 credits<br>about 30 min of AI film</p></div></div></section>
+<footer>© 2026 ClipGleam · hello@clipgleam.com</footer>
+<script>
+const n=Math.max(14,Math.floor(Math.min(innerWidth,980)/40));["bt","bb"].forEach(id=>document.getElementById(id).innerHTML="<i></i>".repeat(n));
+const S=[["hero_desert","The Last Caravan · an epic"],["show_cartoon","Breakfast Friends · a cartoon"],["show_perfume","Aurelle · a perfume advert"],["show_neon","Neon Rain · a music video"],["show_clay","Fox Lane · a claymation"]];
+const scr=document.getElementById("scr");S.forEach(s=>{const d=document.createElement("div");d.className="sh";d.style.backgroundImage=`url(../img/${s[0]}.jpg)`;scr.insertBefore(d,scr.firstChild)});
+const shots=[...scr.querySelectorAll(".sh")].reverse();let k=0;
+function show(i){shots.forEach((s,j)=>s.classList.toggle("on",j===i));document.getElementById("cap").textContent="▶ Now playing — "+S[i][1]}
+show(0);setTimeout(()=>document.getElementById("stage").classList.add("open"),500);setInterval(()=>{k=(k+1)%S.length;show(k)},5000);
+const P=[["Breakfast Friends","Cartoon · 1:00","show_cartoon"],["Aurelle","Advert · 0:30","show_perfume"],["Rooftop","TikTok · 0:15","show_tiktok"],["The Last Caravan","Film · 2:00","hero_desert"],["Fox Lane","Claymation · 1:00","show_clay"],["Neon Rain","Music video · 3:00","show_neon"],["Deck Nine","Sci-fi · 1:30","show_scifi"],["River of Kings","Documentary · 5:00","show_delta"]];
+document.getElementById("ps").innerHTML=P.map(p=>`<div class="poster" style="background-image:url(../img/${p[2]}.jpg)"><div class="top">CLIPGLEAM PRESENTS</div><div class="bt"><b>${p[0]}</b><small>${p[1]}</small><button type="button">Remake with my idea</button></div></div>`).join("");
+</script>
+</body></html>
