@@ -7,7 +7,7 @@
 <meta name="description" content="Quick start, shot language and FAQ for ClipGleam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 <nav><div class="wrap">
@@ -64,9 +64,10 @@ function go(k){if(k===cur)return;cur=k;aud.pause();M.classList.remove("talk");cl
  M.style.left=x(ns)+"px";t1=setTimeout(()=>{M.classList.remove("walk");talk(k)},1700);}
 VB.onclick=()=>{voice=!voice;ss("maxVoice",voice?"1":"0");VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";if(voice&&cur>=0)talk(cur);else{aud.pause();M.classList.remove("talk")}};
 VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";
-document.getElementById("mhide").onclick=()=>{M.hidden=true;MINI.hidden=false;aud.pause();ss("maxHidden","1")};
-MINI.onclick=()=>{M.hidden=false;MINI.hidden=true;ss("maxHidden","0");M.style.left=x(side)+"px"};
-if(ls("maxHidden")==="1"){M.hidden=true;MINI.hidden=false}
+function toCircle(){const a=M.getBoundingClientRect(),b=MINI.getBoundingClientRect();return [b.left+b.width/2-(a.left+a.width/2),b.top+b.height/2-(a.top+a.height/2)]}
+document.getElementById("mhide").onclick=()=>{aud.pause();M.classList.remove("talk");MINI.hidden=false;const [dx,dy]=toCircle();M.style.setProperty("--gx",dx+"px");M.style.setProperty("--gy",dy+"px");M.classList.add("genie");ss("maxHidden","1");setTimeout(()=>{M.hidden=true},650)};
+MINI.onclick=()=>{M.style.left=small()?"":x(side)+"px";M.hidden=false;const [dx,dy]=toCircle();M.style.setProperty("--gx",dx+"px");M.style.setProperty("--gy",dy+"px");MINI.hidden=true;ss("maxHidden","0");requestAnimationFrame(()=>requestAnimationFrame(()=>{M.classList.remove("genie");if(cur>=0)setTimeout(()=>talk(cur),650)}))};
+if(ls("maxHidden")==="1"){M.hidden=true;M.classList.add("genie");MINI.hidden=false}
 M.style.left=(small()?"":x("right")+"px");
 requestAnimationFrame(()=>{M.classList.add("on");});
 const els=L.map(l=>document.querySelector(l[0]));

@@ -282,3 +282,10 @@ a.tile{text-decoration:none}
 @media(max-width:1300px){.mfig{height:min(44vh,380px)}.mbub{max-width:210px;font-size:13px}}
 @media(max-width:899px){.max{left:auto!important;right:12px;bottom:12px;transition:opacity .6s}.mfig{display:none}.mbub{margin:0;max-width:min(280px,80vw)}}
 @media(prefers-reduced-motion:reduce){.max{transition:opacity .3s}.max.walk .mfig,.max.talk .mfig{animation:none}}
+/* v7: hide really hides; genie into the circle and back */
+.max[hidden],.mmini[hidden]{display:none!important}
+.max{transform-origin:50% 100%;transition:left 1.7s cubic-bezier(.45,.05,.35,1),opacity .6s,transform .6s cubic-bezier(.6,-.05,.3,1),filter .6s}
+.max.genie{transform:translate(var(--gx,0),var(--gy,0)) scale(.04,.02);opacity:0;filter:blur(6px)}
+.mmini{animation:mpop .4s ease-out}
+@keyframes mpop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.max{transition:opacity .3s}}
