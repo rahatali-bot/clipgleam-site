@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample C · Gallery Wall</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0b10;--ink:#f3f1ea;--mute:#9b98a8;--acc:#c8ff3d;--card:#16151c}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+.tag{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;background:#fff;color:#000;font:600 12px Inter;padding:6px 12px;border-radius:99px}
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px max(16px,3vw);background:rgba(12,11,16,.75);backdrop-filter:blur(12px)}
+.logo{font:700 20px "Space Grotesk",sans-serif}
+.btn{display:inline-block;border:0;border-radius:12px;padding:12px 20px;font:700 15px "Space Grotesk";color:#0c0b10;background:var(--acc);text-decoration:none;cursor:pointer}
+.top{text-align:center;padding:50px 16px 30px}
+h1{font:700 clamp(36px,6vw,72px)/1.05 "Space Grotesk",sans-serif;letter-spacing:-.03em}
+.top p{color:var(--mute);margin:14px 0 22px;font-size:18px}
+.box{display:flex;gap:8px;max-width:720px;margin:0 auto;background:var(--card);border:1px solid #2a2833;border-radius:16px;padding:8px}
+.box input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:16px Inter;padding:0 14px;outline:none}
+.filters{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:22px 0 6px}
+.filters button{background:var(--card);border:1px solid #2a2833;color:var(--ink);border-radius:99px;padding:8px 16px;font:600 14px Inter;cursor:pointer}
+.filters button.on{background:var(--ink);color:var(--bg)}
+.wall{columns:4 260px;column-gap:12px;padding:16px max(16px,3vw) 60px}
+.wall figure{break-inside:avoid;margin:0 0 12px;position:relative;border-radius:14px;overflow:hidden;cursor:pointer}
+.wall img{display:block;width:100%;height:auto;transition:transform .6s}
+.wall figure:hover img{transform:scale(1.06)}
+.wall figcaption{position:absolute;inset:auto 0 0 0;padding:30px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:13px;opacity:0;transform:translateY(8px);transition:.3s}
+.wall figure:hover figcaption{opacity:1;transform:none}
+.wall figcaption b{display:block;font:700 14px "Space Grotesk";color:var(--acc)}
+.remix{position:absolute;top:10px;right:10px;background:var(--acc);color:#000;font:700 12px Inter;padding:5px 10px;border-radius:99px;opacity:0;transition:.3s}
+.wall figure:hover .remix{opacity:1}
+</style></head><body>
+<div class="tag">Sample C · Gallery Wall (Leonardo-style, pictures first)</div>
+<nav><span class="logo">ClipGleam</span><a class="btn" href="#">Start creating</a></nav>
+<div class="top"><h1>See it. Remix it.<br>Make it yours.</h1><p>Every piece here starts as one sentence. Tap any one to make your own version.</p>
+<form class="box" onsubmit="return false"><input placeholder="Describe your video…"><button class="btn">Create</button></form>
+<div class="filters"><button class="on">All</button><button>Cartoons</button><button>Adverts</button><button>Films</button><button>Music</button><button>Clay</button><button>TikTok</button></div></div>
+<div class="wall" id="w"></div>
+<script>
+const P=[["show_cartoon","Cartoon","A cheeky cat, a clever mouse and a friendly dog share breakfast"],["show_tiktok","TikTok","A dancer on a rooftop at golden hour"],["show_perfume","Advert","Luxury perfume bursting from liquid gold"],["hero_desert","Film","A lone rider races a storm to warn the city"],["show_clay","Clay","A clay fox and hedgehog explore a tiny village"],["show_neon","Music","A singer in neon rain, slow motion"],["show_youtube","YouTube","A creator in a colourful home studio"],["show_epic","Film","Two armies meet on a misty plain at dawn"],["show_delta","Documentary","A river delta at sunrise from the sky"],["show_scifi","Film","An astronaut under red warning lights"],["show_presenter","Business","A friendly presenter in a clean studio"],["show_cricket","Sports","The final over under floodlights"]];
+document.getElementById("w").innerHTML=P.map(p=>`<figure><img src="../img/${p[0]}.jpg" alt="${p[2]}" loading="lazy"><span class="remix">Remix ↻</span><figcaption><b>${p[1]}</b>${p[2]}</figcaption></figure>`).join("");
+</script>
+</body></html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample A · Neon Cinema</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060d;--ink:#f6f3ff;--mute:#a49fc0;--pink:#ff3ea5;--cyan:#22e4ff;--violet:#8b5cff;--card:#120f20}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}
+.tag{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:50;background:#fff;color:#000;font:600 12px Inter;padding:6px 12px;border-radius:99px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px max(16px,4vw)}
+.logo{font:800 20px Unbounded,sans-serif;letter-spacing:.04em;background:linear-gradient(90deg,var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav .btn{padding:10px 18px}
+.btn{display:inline-block;border:0;border-radius:99px;padding:14px 24px;font:600 15px Inter;color:#fff;background:linear-gradient(90deg,var(--pink),var(--violet));box-shadow:0 0 30px rgba(255,62,165,.45);text-decoration:none;cursor:pointer}
+.hero{position:relative;min-height:88vh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:60px 16px}
+.slides{position:absolute;inset:0}
+.slides div{position:absolute;inset:0;background:center/cover;opacity:0;animation:fade 24s infinite,zoom 24s infinite}
+.slides div:nth-child(2){animation-delay:6s}.slides div:nth-child(3){animation-delay:12s}.slides div:nth-child(4){animation-delay:18s}
+@keyframes fade{0%,100%{opacity:0}4%,25%{opacity:1}29%{opacity:0}}
+@keyframes zoom{from{transform:scale(1)}to{transform:scale(1.15)}}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(7,6,13,.25),rgba(7,6,13,.92) 75%),linear-gradient(180deg,transparent 60%,var(--bg))}
+.hin{position:relative;z-index:2;max-width:900px}
+h1{font:800 clamp(38px,7vw,88px)/1.02 Unbounded,sans-serif;letter-spacing:-.02em}
+h1 span{background:linear-gradient(90deg,var(--pink),var(--cyan),var(--violet),var(--pink));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:300%}}
+.hin p{color:var(--mute);font-size:19px;margin:18px auto 28px;max-width:620px}
+.box{display:flex;gap:8px;max-width:680px;margin:0 auto;padding:8px;border-radius:99px;background:rgba(18,15,32,.8);border:1px solid rgba(255,255,255,.12);box-shadow:0 0 0 1px rgba(34,228,255,.25),0 0 60px rgba(139,92,255,.35);backdrop-filter:blur(10px)}
+.box input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:16px Inter;padding:0 16px;outline:none}
+.marq{overflow:hidden;padding:30px 0}
+.row{display:flex;gap:16px;width:max-content;animation:mq 50s linear infinite}
+.row.r2{animation-direction:reverse;margin-top:16px}
+@keyframes mq{to{transform:translateX(-50%)}}
+.row div{width:340px;aspect-ratio:16/10;border-radius:18px;background:center/cover;box-shadow:0 10px 40px rgba(0,0,0,.5);position:relative;overflow:hidden}
+.row div b{position:absolute;left:12px;bottom:10px;font:600 13px Inter;background:rgba(0,0,0,.55);padding:4px 10px;border-radius:99px}
+section{padding:70px max(16px,4vw)}
+h2{font:800 clamp(28px,4vw,46px) Unbounded,sans-serif;text-align:center;margin-bottom:34px}
+.fmt{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;max-width:1200px;margin:0 auto}
+.fmt a{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:3/4;background:center/cover;text-decoration:none;transition:transform .3s}
+.fmt a:hover{transform:translateY(-6px) rotate(-1deg)}
+.fmt a:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,6,13,.9))}
+.fmt b{position:absolute;z-index:2;left:16px;bottom:14px;font:800 20px Unbounded}
+.fmt i{position:absolute;inset:0;border-radius:20px;box-shadow:inset 0 0 0 2px var(--c,#ff3ea5);opacity:.7;z-index:3}
+.steps{display:flex;gap:14px;max-width:1100px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.steps div{flex:1;min-width:200px;padding:22px;border-radius:18px;background:var(--card);border:1px solid rgba(255,255,255,.08)}
+.steps b{font:800 34px Unbounded;background:linear-gradient(90deg,var(--pink),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta{text-align:center}
+</style></head><body>
+<div class="tag">Sample A · Neon Cinema (dark, glowing, moving)</div>
+<nav><span class="logo">CLIPGLEAM</span><a class="btn" href="#">Start creating</a></nav>
+<header class="hero">
+  <div class="slides"><div style="background-image:url(../img/hero_desert.jpg)"></div><div style="background-image:url(../img/show_neon.jpg)"></div><div style="background-image:url(../img/show_perfume.jpg)"></div><div style="background-image:url(../img/show_epic.jpg)"></div></div>
+  <div class="hin"><h1>Type an idea.<br><span>Get a film.</span></h1><p>Adverts, cartoons, music videos and movies from one sentence. Pay as you go from £5.</p>
+  <form class="box" onsubmit="return false"><input placeholder="A cheeky cat runs a tiny bakery…"><button class="btn">Create ✨</button></form></div>
+</header>
+<div class="marq">
+  <div class="row"><div style="background-image:url(../img/show_cartoon.jpg)"><b>Cartoon</b></div><div style="background-image:url(../img/show_clay.jpg)"><b>Claymation</b></div><div style="background-image:url(../img/show_scifi.jpg)"><b>Sci-fi</b></div><div style="background-image:url(../img/show_delta.jpg)"><b>Documentary</b></div><div style="background-image:url(../img/show_youtube.jpg)"><b>YouTube</b></div><div style="background-image:url(../img/show_cartoon.jpg)"><b>Cartoon</b></div><div style="background-image:url(../img/show_clay.jpg)"><b>Claymation</b></div><div style="background-image:url(../img/show_scifi.jpg)"><b>Sci-fi</b></div><div style="background-image:url(../img/show_delta.jpg)"><b>Documentary</b></div><div style="background-image:url(../img/show_youtube.jpg)"><b>YouTube</b></div></div>
+  <div class="row r2"><div style="background-image:url(../img/show_perfume.jpg)"><b>Advert</b></div><div style="background-image:url(../img/show_neon.jpg)"><b>Music video</b></div><div style="background-image:url(../img/show_cricket.jpg)"><b>Sports</b></div><div style="background-image:url(../img/show_presenter.jpg)"><b>Presenter</b></div><div style="background-image:url(../img/hero_desert.jpg)"><b>Film</b></div><div style="background-image:url(../img/show_perfume.jpg)"><b>Advert</b></div><div style="background-image:url(../img/show_neon.jpg)"><b>Music video</b></div><div style="background-image:url(../img/show_cricket.jpg)"><b>Sports</b></div><div style="background-image:url(../img/show_presenter.jpg)"><b>Presenter</b></div><div style="background-image:url(../img/hero_desert.jpg)"><b>Film</b></div></div>
+</div>
+<section><h2>What will you make?</h2>
+<div class="fmt">
+<a href="#" style="background-image:url(../img/show_tiktok.jpg);--c:#ff3ea5"><i></i><b>TikTok</b></a>
+<a href="#" style="background-image:url(../img/show_youtube.jpg);--c:#ff5a3c"><i></i><b>YouTube</b></a>
+<a href="#" style="background-image:url(../img/show_perfume.jpg);--c:#ffc83d"><i></i><b>Adverts</b></a>
+<a href="#" style="background-image:url(../img/show_cartoon.jpg);--c:#22e4ff"><i></i><b>Cartoons</b></a>
+<a href="#" style="background-image:url(../img/show_clay.jpg);--c:#7dff8a"><i></i><b>Clay</b></a>
+<a href="#" style="background-image:url(../img/show_epic.jpg);--c:#8b5cff"><i></i><b>Films</b></a>
+</div></section>
+<section><h2>Four steps</h2><div class="steps"><div><b>01</b><p>Type your idea</p></div><div><b>02</b><p>Approve script &amp; cast</p></div><div><b>03</b><p>Watch it being made</p></div><div><b>04</b><p>Share anywhere</p></div></div></section>
+<section class="cta"><a class="btn" href="#">Get early access</a></section>
+</body></html>
