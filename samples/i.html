@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample I · Viewfinder Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* Layout: the page is a camera — viewfinder hero, film-strip templates, cinema-ticket prices */
+:root{--bg:#060607;--ink:#f5f1e8;--mute:#9c978c;--gold:#e9c46a;--gold2:#ffe3a3;--rec:#ff3b30;--line:rgba(245,241,232,.14)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit;color:inherit;cursor:pointer}
+.tag{position:fixed;bottom:14px;left:14px;z-index:80;background:#fff;color:#000;font:600 11px Inter;padding:5px 10px;border-radius:99px}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:16px max(16px,4vw);background:linear-gradient(180deg,rgba(0,0,0,.7),transparent)}
+.logo{display:flex;align-items:center;gap:10px;font:700 20px Inter;letter-spacing:.18em}
+.lens{width:26px;height:26px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center}.lens:after{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+.links{display:flex;gap:28px;font-size:14px;color:#ddd6c8}@media(max-width:760px){.links{display:none}}
+.navbtn{border:1.5px solid var(--gold);color:var(--gold);border-radius:99px;padding:8px 18px;font-weight:600;font-size:14px}
+.navbtn:hover{background:var(--gold);color:#000}
+/* HERO = viewfinder */
+.vf{position:relative;height:100vh;min-height:620px;overflow:hidden;cursor:crosshair}
+.scene{position:absolute;inset:0;background:center/cover;transform:scale(1.08);transition:opacity 1s ease}
+.scene.kb{animation:push 18s ease-in-out infinite alternate}
+@keyframes push{from{transform:scale(1.04)}to{transform:scale(1.16) translate(-1.5%,-1%)}}
+.shade{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 35%,rgba(0,0,0,.7)),linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,0) 55%)}
+.gleam{position:absolute;inset:-20% auto -20% -40%;width:30%;background:linear-gradient(100deg,transparent,rgba(255,227,163,.0) 20%,rgba(255,227,163,.28) 50%,transparent 80%);transform:skewX(-18deg);animation:sweep 9s ease-in-out infinite;pointer-events:none;mix-blend-mode:screen}
+@keyframes sweep{0%,55%{left:-40%}85%,100%{left:120%}}
+.hud{position:absolute;inset:max(80px,9vh) max(16px,4vw) max(28px,4vh);pointer-events:none;font:500 13px "JetBrains Mono",monospace;color:rgba(255,255,255,.85);letter-spacing:.06em}
+.c{position:absolute;width:44px;height:44px;border:2px solid rgba(255,255,255,.8)}
+.c1{left:0;top:0;border-right:0;border-bottom:0}.c2{right:0;top:0;border-left:0;border-bottom:0}.c3{left:0;bottom:0;border-right:0;border-top:0}.c4{right:0;bottom:0;border-left:0;border-top:0}
+.rec{position:absolute;left:58px;top:12px;display:flex;align-items:center;gap:8px}.rec i{width:11px;height:11px;border-radius:50%;background:var(--rec);box-shadow:0 0 12px var(--rec);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.spec{position:absolute;right:58px;top:12px}
+.tc{position:absolute;right:58px;bottom:12px}
+.bat{position:absolute;left:58px;bottom:12px}
+.focus{position:absolute;left:0;top:0;width:120px;height:80px;margin:-40px 0 0 -60px;pointer-events:none;z-index:3;transition:width .3s,height .3s}
+.focus:before,.focus:after{content:"";position:absolute;inset:0;border:2px solid var(--gold);clip-path:polygon(0 0,22% 0,22% 3px,3px 3px,3px 30%,0 30%,0 70%,3px 70%,3px calc(100% - 3px),22% calc(100% - 3px),22% 100%,78% 100%,78% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 70%,100% 70%,100% 30%,calc(100% - 3px) 30%,calc(100% - 3px) 3px,78% 3px,78% 0,100% 0,100% 100%,0 100%)}
+.focus:after{border:0;clip-path:none;inset:50% auto auto 50%;width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--gold)}
+.focus.lock:before{border-color:#7dff8a}
+.match{position:absolute;left:50%;top:max(96px,12vh);transform:translateX(-50%);z-index:4;font:500 12px "JetBrains Mono";letter-spacing:.1em;background:rgba(0,0,0,.55);border:1px solid var(--line);padding:6px 12px;border-radius:99px;opacity:0;transition:opacity .4s}
+.match.on{opacity:1}
+.copy{position:absolute;z-index:5;left:max(16px,6vw);right:max(16px,6vw);bottom:max(60px,9vh);display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:end}
+@media(max-width:900px){.copy{grid-template-columns:1fr;gap:22px;bottom:50px}}
+h1{font:400 clamp(52px,8vw,118px)/.92 "Instrument Serif",Georgia,serif;letter-spacing:-.01em}
+h1 em{color:var(--gold2);font-style:italic}
+.lead{color:#e4ddcf;font-size:18px;margin-top:14px;max-width:460px}
+/* slate */
+.slate{background:#0d0d0f;border:1px solid #2a2a2e;border-radius:10px;overflow:visible;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.clap{height:34px;border-radius:9px 9px 0 0;transform-origin:0 100%;background:repeating-linear-gradient(-55deg,#f5f1e8 0 22px,#0d0d0f 22px 44px);transition:transform .18s cubic-bezier(.5,0,.8,.4)}
+.slate.snap .clap{animation:clap .5s}
+@keyframes clap{0%{transform:rotate(-16deg)}45%{transform:rotate(-16deg)}60%{transform:rotate(0)}70%{transform:rotate(-3deg)}80%{transform:rotate(0)}}
+.clap.up{transform:rotate(-16deg)}
+.sl{display:flex;font:400 15px "Bebas Neue",Inter;letter-spacing:.12em;color:var(--mute);border-bottom:1px solid #2a2a2e}
+.sl span{flex:1;padding:6px 12px;border-right:1px solid #2a2a2e}.sl span:last-child{border-right:0}.sl b{color:var(--ink);font-weight:400;margin-left:6px}
+.sin{display:flex;gap:8px;padding:10px}
+.sin input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:17px Inter;padding:10px 8px;outline:none}
+.action{flex:none;border:0;border-radius:8px;padding:12px 20px;background:var(--gold);color:#140f02;font:400 22px "Bebas Neue",Inter;letter-spacing:.1em}
+.action:hover{background:var(--gold2)}
+.hints{display:flex;gap:6px;flex-wrap:wrap;padding:0 12px 12px}
+.hints button{border:1px solid #2f2f34;background:none;border-radius:99px;padding:5px 11px;font-size:12px;color:#cfc8ba}
+.hints button:hover{border-color:var(--gold);color:var(--gold2)}
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9}
+.flash.on{animation:fl .5s}
+@keyframes fl{0%{opacity:.75}100%{opacity:0}}
+.scrollcue{position:absolute;z-index:5;left:50%;bottom:16px;transform:translateX(-50%);font:500 11px "JetBrains Mono";letter-spacing:.2em;color:#bdb6a8}
+/* FILM STRIP (scroll-driven) */
+.reel{position:relative;height:320vh}
+.stick{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.rh{padding:0 max(16px,6vw);margin-bottom:28px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.rh h2{font:400 clamp(40px,5.5vw,76px)/1 "Instrument Serif",serif}.rh h2 em{color:var(--gold2)}
+.rh p{color:var(--mute);max-width:360px}
+.strip{display:flex;width:max-content;background:#111;padding:26px 0;position:relative;will-change:transform}
+.strip:before,.strip:after{content:"";position:absolute;left:0;right:0;height:14px;background:repeating-linear-gradient(90deg,transparent 0 14px,#060607 14px 30px,transparent 30px 44px)}
+.strip:before{top:6px}.strip:after{bottom:6px}
+.fr{flex:none;width:min(420px,78vw);aspect-ratio:16/11;margin-right:14px;position:relative;overflow:hidden;background:center/cover;border-radius:3px;filter:saturate(.9)}
+.fr:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 55%)}
+.fr .ft{position:absolute;z-index:2;left:16px;right:16px;bottom:14px;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.fr b{display:block;font:400 30px/1 "Bebas Neue",Inter;letter-spacing:.06em}.fr small{color:#d8d1c3;font-size:13px}
+.fr .no{position:absolute;z-index:2;top:12px;left:14px;font:500 11px "JetBrains Mono";color:var(--gold2)}
+.fr button{flex:none;border:1.5px solid var(--gold);background:rgba(0,0,0,.4);color:var(--gold2);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600}
+.fr button:hover{background:var(--gold);color:#000}
+.fr:hover{filter:none}
+@media(max-width:760px){.reel{height:auto}.stick{position:static;height:auto;padding:80px 0}.stripwrap{overflow-x:auto}.strip{transform:none!important}}
+/* steps */
+.steps{padding:110px max(16px,6vw);display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+.steps div{border-top:1px solid var(--line);padding-top:20px}
+.steps span{font:500 12px "JetBrains Mono";color:var(--gold)}
+.steps h3{font:400 38px/1.05 "Instrument Serif",serif;margin:10px 0 8px}
+.steps p{color:var(--mute)}
+/* tickets */
+.tix{padding:40px max(16px,6vw) 120px;text-align:center}
+.tix h2{font:400 clamp(40px,5.5vw,72px)/1 "Instrument Serif",serif;margin-bottom:12px}.tix h2 em{color:var(--gold2)}
+.tix>p{color:var(--mute);margin-bottom:40px}
+.trow{display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
+.ticket{position:relative;width:280px;display:flex;background:var(--gold);color:#1a1405;border-radius:12px;text-align:left;transition:transform .3s;-webkit-mask:radial-gradient(circle 12px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;mask:radial-gradient(circle 12px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 12px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+.ticket:hover{transform:rotate(-2deg) translateY(-6px)}
+.ticket.pop{background:#f5f1e8}
+.tmain{flex:1;padding:20px 18px 18px 26px}
+.tmain small{font:400 14px "Bebas Neue";letter-spacing:.2em;opacity:.7}
+.tmain b{display:block;font:400 54px/1 "Bebas Neue";margin:4px 0}
+.tmain p{font-size:14px;font-weight:500}
+.stub{width:74px;border-left:2px dashed rgba(0,0,0,.35);display:grid;place-items:center}
+.stub span{transform:rotate(90deg);white-space:nowrap;font:400 16px "Bebas Neue";letter-spacing:.2em}
+footer{border-top:1px solid var(--line);padding:28px max(16px,6vw);color:#7d786e;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(prefers-reduced-motion:reduce){.scene.kb,.gleam,.rec i{animation:none}}
+
+/* ===== Sample I additions ===== */
+:root{--c1:#ff4f9a;--c2:#4f8bff;--c3:#2fd18a;--c4:#ff8a3d;--c5:#9a6bff}
+.sec{padding:110px max(16px,5vw) 60px}
+.big{font:400 clamp(44px,6.5vw,96px)/.95 "Instrument Serif",serif;text-align:center}
+.big em{color:var(--gold2)}
+.sub3{text-align:center;color:var(--mute);font-size:19px;margin:14px auto 40px;max-width:640px}
+/* 3D wall */
+.wall3d{height:min(560px,70vh);perspective:1500px;cursor:grab;touch-action:pan-y;user-select:none;position:relative}
+.wall3d:active{cursor:grabbing}
+.ring3d{position:absolute;left:50%;top:50%;width:300px;height:190px;margin:-95px 0 0 -150px;transform-style:preserve-3d}
+.pan{position:absolute;inset:0;border-radius:12px;background:center/cover;box-shadow:0 20px 50px rgba(0,0,0,.6);border:2px solid rgba(255,255,255,.12);backface-visibility:hidden;cursor:pointer;transition:border-color .2s}
+.pan:hover{border-color:var(--gold)}
+.pan span{position:absolute;left:10px;bottom:10px;font:400 20px "Bebas Neue";letter-spacing:.08em;background:rgba(0,0,0,.6);padding:2px 10px;border-radius:6px}
+.floor{position:absolute;left:10%;right:10%;bottom:6%;height:40px;background:radial-gradient(ellipse,rgba(233,196,106,.25),transparent 70%);filter:blur(10px)}
+.hint3d{text-align:center;font:500 12px "JetBrains Mono";letter-spacing:.2em;color:#bdb6a8;margin-top:10px}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.85);display:grid;place-items:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+.lb.on{opacity:1;pointer-events:auto}
+.lbc{max-width:1000px;width:100%;transform:scale(.9);transition:transform .35s cubic-bezier(.3,1.4,.5,1)}
+.lb.on .lbc{transform:none}
+.lbc .im{aspect-ratio:16/9;background:center/cover;border-radius:14px}
+.lbc .row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+.lbc b{font:400 34px "Bebas Neue";letter-spacing:.06em}
+.gbtn{border:0;border-radius:99px;padding:13px 24px;background:var(--gold);color:#140f02;font-weight:700;font-size:16px}
+.gbtn:hover{background:var(--gold2)}
+.xbtn{background:none;border:1.5px solid #fff;border-radius:99px;padding:11px 18px}
+/* wizard */
+.wiz{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;max-width:1300px;margin:0 auto;align-items:start}
+@media(max-width:940px){.wiz{grid-template-columns:1fr}}
+.stepw{margin-bottom:26px}
+.stepw h4{font:400 22px "Bebas Neue";letter-spacing:.14em;color:var(--mute);margin-bottom:10px}
+.stepw h4 i{font-style:normal;color:var(--gold2);margin-right:8px}
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:560px){.opts{grid-template-columns:repeat(2,1fr)}}
+.opt{border:2px solid #2a2a30;background:#111114;border-radius:16px;padding:16px 10px;text-align:center;transition:transform .15s,border-color .2s,background .2s}
+.opt:hover{transform:translateY(-3px)}
+.opt .e{font-size:34px;display:block;line-height:1.1}
+.opt b{display:block;font-size:15px;margin-top:6px}
+.opt.on{border-color:var(--oc);background:color-mix(in srgb,var(--oc) 18%,#111114);transform:scale(1.04)}
+.pv{position:sticky;top:90px}
+.pvbox{margin:0 auto;border-radius:16px;overflow:hidden;background:center/cover;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 2px rgba(233,196,106,.35);transition:aspect-ratio .6s,width .6s,background-image .5s;position:relative}
+.pvbox.wide{width:100%;aspect-ratio:16/9}.pvbox.tall{width:min(340px,70%);aspect-ratio:9/16}
+.pvbox .badge{position:absolute;top:12px;left:12px;font:500 11px "JetBrains Mono";background:rgba(0,0,0,.6);padding:5px 10px;border-radius:99px;letter-spacing:.08em}
+.pvcap{text-align:center;margin-top:16px;font:400 28px/1.15 "Instrument Serif",serif}
+.pvcap em{color:var(--gold2)}
+.make{display:block;margin:18px auto 0;border:0;border-radius:99px;padding:16px 36px;font:400 26px "Bebas Neue";letter-spacing:.1em;color:#140f02;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 10px 30px rgba(233,196,106,.35)}
+.make:hover{transform:translateY(-2px)}
+.prog{margin-top:18px;display:none}
+.prog.on{display:block}
+.pbar{height:10px;border-radius:99px;background:#1e1e22;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c1),var(--gold),var(--c3));transition:width .3s}
+.plog{font:500 13px "JetBrains Mono";color:#cfc8ba;margin-top:10px;min-height:20px;text-align:center}
+.prem{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.55);opacity:0;transition:opacity .5s;pointer-events:none}
+.prem.on{opacity:1}
+.prem div{text-align:center}
+.prem b{display:block;font:400 clamp(34px,4vw,52px) "Bebas Neue";letter-spacing:.08em;color:var(--gold2)}
+.prem small{color:#eee;font-size:13px}
+.conf{position:fixed;top:-20px;z-index:95;width:10px;height:14px;pointer-events:none;animation:fall 2.6s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+h1{font-size:clamp(60px,9vw,136px)!important}
+.slate{transform:scale(1.04);transform-origin:right bottom}
+</style></head><body>
+<div class="lb" id="lb"><div class="lbc"><div class="im" id="lbim"></div><div class="row"><b id="lbt"></b><div style="display:flex;gap:10px"><button class="xbtn" type="button" id="lbx">Close</button><button class="gbtn" type="button" id="lbu">Use this template</button></div></div></div></div>
+<div class="tag">Sample I · Viewfinder Pro (interactive)</div>
+<nav><a class="logo" href="#"><span class="lens"></span>CLIPGLEAM</a><div class="links"><a href="#wall">Screen wall</a><a href="#build">Build a film</a><a href="#reel">Templates</a><a href="#how">How it works</a><a href="#tix">Prices</a></div><a class="navbtn" href="#top">Start filming</a></nav>
+
+<header class="vf" id="top">
+ <div class="scene kb" id="sA"></div><div class="scene kb" id="sB" style="opacity:0"></div>
+ <div class="shade"></div><div class="gleam"></div>
+ <div class="hud"><i class="c c1"></i><i class="c c2"></i><i class="c c3"></i><i class="c c4"></i>
+  <div class="rec"><i></i>REC</div><div class="spec">4K · 24 FPS · 2.39:1</div><div class="bat">▮▮▮▯ · ISO 800 · f/2.8</div><div class="tc" id="tc">00:00:00:00</div></div>
+ <div class="focus" id="fo"></div>
+ <div class="match" id="mt"></div>
+ <div class="flash" id="fl"></div>
+ <div class="copy">
+  <div><h1>Say it.<br><em>See it.</em></h1><p class="lead">Type one sentence. ClipGleam writes it, casts it, films it and cuts it. Watch the scene change as you type.</p></div>
+  <form class="slate" id="slate" onsubmit="return action(event)">
+   <div class="clap up" id="clap"></div>
+   <div class="sl"><span>SCENE<b>1</b></span><span>TAKE<b id="take">1</b></span><span>DIRECTOR<b>YOU</b></span></div>
+   <div class="sin"><input id="idea" placeholder="Type your idea… try “a dog who flies a plane”" maxlength="200" autocomplete="off"><button class="action" type="submit">Action!</button></div>
+   <div class="hints" id="hints"></div>
+  </form>
+ </div>
+ <div class="scrollcue">SCROLL TO ROLL FILM ↓</div>
+</header>
+
+<section class="sec" id="wall"><h2 class="big">Spin the <em>screen wall.</em></h2><p class="sub3">Grab it and spin. Tap any screen to look closer.</p>
+ <div class="wall3d" id="w3"><div class="ring3d" id="r3"></div><div class="floor"></div></div>
+ <div class="hint3d">← DRAG TO SPIN →</div></section>
+
+<section class="sec" id="build"><h2 class="big">Build your film <em>in 4 taps.</em></h2><p class="sub3">Tap your choices. Watch the preview change. Then press Make it.</p>
+ <div class="wiz">
+  <div id="steps"></div>
+  <div class="pv"><div class="pvbox wide" id="pvb"><span class="badge" id="pvbadge"></span><div class="prem" id="prem"><div><b>🎬 Premiere!</b><small>Demo only — real films arrive with early access</small></div></div></div>
+   <div class="pvcap" id="pvcap"></div>
+   <button class="make" type="button" id="make">Make it!</button>
+   <div class="prog" id="prog"><div class="pbar"><i id="pbi"></i></div><div class="plog" id="plog"></div></div>
+  </div>
+ </div></section>
+
+<section class="reel" id="reel"><div class="stick">
+ <div class="rh"><h2>Pick a reel. <em>Make it yours.</em></h2><p>Ready-made templates. Swap the words, faces, voice and music, then press Action.</p></div>
+ <div class="stripwrap"><div class="strip" id="strip"></div></div>
+</div></section>
+
+<section class="steps" id="how">
+ <div><span>01 · SCRIPT</span><h3>You type an idea.</h3><p>One sentence is enough. ClipGleam writes the scenes; you change any line.</p></div>
+ <div><span>02 · SHOOT</span><h3>We film every shot.</h3><p>Same faces, same voices, every scene. Weak shots are retaken automatically.</p></div>
+ <div><span>03 · PREMIERE</span><h3>You press share.</h3><p>Ready for TikTok, YouTube or the big screen, in sharp 4K.</p></div>
+</section>
+
+<section class="tix" id="tix"><h2>Your ticket <em>in.</em></h2><p>No subscription. Pay for what you make. Credits last a year.</p>
+ <div class="trow">
+  <div class="ticket"><div class="tmain"><small>Admit one · Starter</small><b>£5</b><p>20 credits · about 2½ min of AI film</p></div><div class="stub"><span>ADMIT ONE</span></div></div>
+  <div class="ticket pop"><div class="tmain"><small>Most popular · Pro</small><b>£20</b><p>88 credits · about 11 min of AI film</p></div><div class="stub"><span>ADMIT ONE</span></div></div>
+  <div class="ticket"><div class="tmain"><small>Admit one · Studio</small><b>£50</b><p>240 credits · about 30 min of AI film</p></div><div class="stub"><span>ADMIT ONE</span></div></div>
+ </div></section>
+<footer><span>© 2026 ClipGleam</span><span>hello@clipgleam.com</span></footer>
+
+<script>
+const IMG="../img/";
+const K=[[/dog|cat|mouse|cartoon|kid|puppy|animal|pixar/i,"show_cartoon","3D cartoon"],[/perfume|advert|ad\b|product|luxury|brand|bottle/i,"show_perfume","Luxury advert"],[/sing|song|music|neon|rap|band|concert/i,"show_neon","Music video"],[/desert|horse|rider|fortress|castle|storm|camel/i,"hero_desert","Epic film"],[/war|army|battle|knight|sword|soldier/i,"show_epic","Battle film"],[/space|astronaut|rocket|planet|alien|sci/i,"show_scifi","Sci-fi"],[/clay|plasticine|stop.?motion|fox|hedgehog/i,"show_clay","Claymation"],[/dance|tiktok|reel|trend/i,"show_tiktok","TikTok"],[/river|nature|drone|documentary|forest|ocean|wildlife/i,"show_delta","Documentary"],[/cricket|football|sport|match|stadium/i,"show_cricket","Sports"],[/youtube|vlog|creator|channel|stream/i,"show_youtube","YouTube"],[/business|presenter|explain|company|training|restaurant|shop/i,"show_presenter","Business"]];
+const A=document.getElementById("sA"),B=document.getElementById("sB");let front=A,curImg="";
+function setScene(n){if(n===curImg)return;curImg=n;const back=front===A?B:A;back.style.backgroundImage=`url(${IMG}${n}.jpg)`;back.style.opacity=1;front.style.opacity=0;front=back}
+setScene("hero_desert");
+const reel=["hero_desert","show_perfume","show_cartoon","show_neon","show_clay"];let ri=0,typing=false;
+setInterval(()=>{if(!typing){ri=(ri+1)%reel.length;setScene(reel[ri])}},6000);
+const inp=document.getElementById("idea"),mt=document.getElementById("mt"),fo=document.getElementById("fo");
+inp.addEventListener("input",()=>{const v=inp.value;typing=v.length>0;const m=K.find(k=>k[0].test(v));if(m){setScene(m[1]);mt.textContent="● LIVE PREVIEW · "+m[2].toUpperCase();mt.classList.add("on");fo.classList.add("lock")}else{mt.classList.remove("on");fo.classList.remove("lock")}});
+const H=[["🐶 Cartoon","A dog who dreams of flying a plane"],["✨ Advert","A perfume bottle bursting from liquid gold"],["🎤 Music","A singer dancing in neon rain"],["🚀 Sci-fi","An astronaut lost on a red planet"],["🦊 Clay","A clay fox opens a tiny bakery"]];
+document.getElementById("hints").innerHTML=H.map((h,i)=>`<button type="button" data-i="${i}">${h[0]}</button>`).join("");
+document.getElementById("hints").onclick=e=>{const b=e.target.closest("button");if(!b)return;inp.value="";typing=true;const t=H[b.dataset.i][1];let n=0;const iv=setInterval(()=>{inp.value=t.slice(0,++n);inp.dispatchEvent(new Event("input"));if(n>=t.length)clearInterval(iv)},28)};
+let take=1;
+function action(e){e.preventDefault();const s=document.getElementById("slate");s.classList.remove("snap");void s.offsetWidth;s.classList.add("snap");const f=document.getElementById("fl");setTimeout(()=>{f.classList.remove("on");void f.offsetWidth;f.classList.add("on")},300);document.getElementById("take").textContent=++take;return false}
+// focus box follows mouse
+const vf=document.querySelector(".vf");let fx=innerWidth*.62,fy=innerHeight*.42,tx=fx,ty=fy;
+vf.addEventListener("mousemove",e=>{const r=vf.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top});
+(function loop(){fx+=(tx-fx)*.12;fy+=(ty-fy)*.12;fo.style.transform=`translate(${fx}px,${fy}px)`;requestAnimationFrame(loop)})();
+// timecode
+const tc=document.getElementById("tc"),t0=performance.now();
+setInterval(()=>{const s=(performance.now()-t0)/1000,f=Math.floor(s*24)%24,p=x=>String(x).padStart(2,"0");tc.textContent=`${p(Math.floor(s/3600))}:${p(Math.floor(s/60)%60)}:${p(Math.floor(s)%60)}:${p(f)}`},42);
+// film strip
+const T=[["TikTok","Rooftop dance promo","show_tiktok","0:15"],["Advert","Luxury perfume","show_perfume","0:30"],["Cartoon","Breakfast friends","show_cartoon","1:00"],["Film","The desert rider","hero_desert","2:00"],["Claymation","Fox lane","show_clay","1:00"],["Music video","Neon rain","show_neon","3:00"],["YouTube","Creator intro","show_youtube","0:10"],["Sci-fi","Deck nine","show_scifi","1:30"],["Documentary","River of kings","show_delta","5:00"],["Business","Explainer presenter","show_presenter","1:00"],["Sports","The final over","show_cricket","0:45"],["Film","Field of banners","show_epic","2:30"]];
+const st=document.getElementById("strip");
+st.innerHTML=T.map((t,i)=>`<div class="fr" style="background-image:url(${IMG}${t[2]}.jpg)"><span class="no">${String(i+1).padStart(2,"0")}A · ${t[0].toUpperCase()}</span><div class="ft"><div><b>${t[1]}</b><small>${t[0]} · ${t[3]}</small></div><button type="button" data-n="${i}">Use</button></div></div>`).join("");
+st.onclick=e=>{const b=e.target.closest("button");if(!b)return;const t=T[b.dataset.n];inp.value="Use template: "+t[1];inp.dispatchEvent(new Event("input"));setScene(t[2]);document.getElementById("top").scrollIntoView({behavior:"smooth"})};
+const reelEl=document.getElementById("reel");
+function roll(){if(innerWidth<=760)return;const r=reelEl.getBoundingClientRect(),total=reelEl.offsetHeight-innerHeight,p=Math.min(1,Math.max(0,-r.top/total)),max=st.scrollWidth-innerWidth+40;st.style.transform=`translateX(${-p*max+ (innerWidth*.06)}px)`}
+addEventListener("scroll",roll,{passive:true});addEventListener("resize",roll);roll();
+
+// ===== 3D wall =====
+const W=[["show_cartoon","Cartoon"],["show_perfume","Advert"],["hero_desert","Film"],["show_clay","Claymation"],["show_neon","Music video"],["show_tiktok","TikTok"],["show_scifi","Sci-fi"],["show_youtube","YouTube"],["show_delta","Documentary"],["show_epic","Epic"],["show_presenter","Business"],["show_cricket","Sports"]];
+const r3=document.getElementById("r3"),w3=document.getElementById("w3"),N=W.length,R=Math.round(150/Math.tan(Math.PI/N))+30;
+r3.innerHTML=W.map((w,i)=>`<div class="pan" data-i="${i}" style="background-image:url(${IMG}${w[0]}.jpg);transform:rotateY(${i*360/N}deg) translateZ(${R}px)"><span>${w[1]}</span></div>`).join("");
+let rot=0,vel=-.12,drag=false,lx=0,moved=0;
+w3.addEventListener("pointerdown",e=>{drag=true;lx=e.clientX;moved=0;w3.setPointerCapture(e.pointerId)});
+w3.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-lx;lx=e.clientX;moved+=Math.abs(dx);vel=dx*.25;rot+=dx*.25});
+w3.addEventListener("pointerup",e=>{drag=false;if(moved<6){const el=document.elementsFromPoint(e.clientX,e.clientY).find(n=>n.classList&&n.classList.contains("pan"));if(el)openLB(+el.dataset.i)}});
+(function spin(){if(!drag){rot+=vel;vel+=(-.12-vel)*.02}r3.style.transform=`translateZ(-${R}px) rotateX(-6deg) rotateY(${rot}deg)`;requestAnimationFrame(spin)})();
+const lb=document.getElementById("lb");let lbi=0;
+function openLB(i){lbi=i;document.getElementById("lbim").style.backgroundImage=`url(${IMG}${W[i][0]}.jpg)`;document.getElementById("lbt").textContent=W[i][1];lb.classList.add("on")}
+document.getElementById("lbx").onclick=()=>lb.classList.remove("on");lb.onclick=e=>{if(e.target===lb)lb.classList.remove("on")};
+document.getElementById("lbu").onclick=()=>{lb.classList.remove("on");setScene(W[lbi][0]);inp.value="Template: "+W[lbi][1];inp.dispatchEvent(new Event("input"));document.getElementById("top").scrollIntoView({behavior:"smooth"})};
+// ===== wizard =====
+const Q=[["Format",[["📱","TikTok","tall","#ff4f9a"],["▶️","YouTube","wide","#ff8a3d"],["✨","Advert","wide","#e9c46a"],["🎬","Film","wide","#9a6bff"]]],
+["Style",[["🎥","Cinematic","","#4f8bff"],["🧸","3D cartoon","","#ff4f9a"],["🦊","Clay","","#2fd18a"],["🌈","Neon","","#9a6bff"]]],
+["Star",[["🐶","A dog","show_cartoon","#ff8a3d"],["🏇","A rider","hero_desert","#e9c46a"],["🧴","A product","show_perfume","#ff4f9a"],["🚀","An astronaut","show_scifi","#4f8bff"]]],
+["Mood",[["😂","Funny","","#2fd18a"],["⚔️","Epic","","#ff8a3d"],["💫","Dreamy","","#9a6bff"],["⚡","Energetic","","#ff4f9a"]]]];
+const sel=[0,1,0,0];
+function drawW(){document.getElementById("steps").innerHTML=Q.map((q,i)=>`<div class="stepw"><h4><i>${i+1}</i>${q[0]}</h4><div class="opts">${q[1].map((o,j)=>`<button type="button" class="opt ${sel[i]===j?"on":""}" style="--oc:${o[3]}" data-s="${i}" data-o="${j}"><span class="e">${o[0]}</span><b>${o[1]}</b></button>`).join("")}</div></div>`).join("");upd()}
+function upd(){const f=Q[0][1][sel[0]],st=Q[1][1][sel[1]],star=Q[2][1][sel[2]],m=Q[3][1][sel[3]];
+let img=star[2];if(st[1]==="Clay")img="show_clay";else if(st[1]==="Neon")img="show_neon";else if(st[1]==="3D cartoon"&&star[1]==="A dog")img="show_cartoon";
+const b=document.getElementById("pvb");b.className="pvbox "+f[2];b.style.backgroundImage=`url(${IMG}${img}.jpg)`;
+document.getElementById("pvbadge").textContent=(f[2]==="tall"?"9:16":"16:9")+" · "+f[1].toUpperCase();
+document.getElementById("pvcap").innerHTML=`A <em>${m[1].toLowerCase()}</em> ${st[1].toLowerCase()} ${f[1]==="Film"?"film":f[1]} starring <em>${star[1].toLowerCase()}</em>.`;
+document.getElementById("prem").classList.remove("on")}
+document.getElementById("steps").onclick=e=>{const b=e.target.closest(".opt");if(!b)return;sel[+b.dataset.s]=+b.dataset.o;drawW()};drawW();
+document.getElementById("make").onclick=()=>{const pr=document.getElementById("prog"),bi=document.getElementById("pbi"),lg=document.getElementById("plog");pr.classList.add("on");document.getElementById("prem").classList.remove("on");
+const L=["✍️ Writing the script…","🎭 Casting the characters…","🎥 Filming shot 1 of 12…","🎥 Filming shot 6 of 12…","🎥 Filming shot 12 of 12…","🎵 Adding music and voices…","✂️ Final edit…","✅ Quality check passed"];let i=0;
+const iv=setInterval(()=>{lg.textContent=L[i];bi.style.width=((i+1)/L.length*100)+"%";i++;if(i>=L.length){clearInterval(iv);setTimeout(()=>{document.getElementById("prem").classList.add("on");confetti()},400)}},520)};
+function confetti(){const C=["#ff4f9a","#4f8bff","#2fd18a","#e9c46a","#9a6bff","#ff8a3d"];for(let k=0;k<70;k++){const d=document.createElement("i");d.className="conf";d.style.left=Math.random()*100+"vw";d.style.background=C[k%C.length];d.style.animationDelay=Math.random()*.6+"s";d.style.animationDuration=(2+Math.random()*1.5)+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),4200)}}
+</script>
+</body></html>
