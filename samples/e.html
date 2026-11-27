@@ -21,8 +21,8 @@ nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-con
 .hero{position:relative;min-height:calc(100vh - 70px);display:grid;place-items:center;text-align:center;overflow:hidden;padding:40px 16px}
 .ringwrap{position:absolute;left:50%;top:50%;width:min(560px,80vw);aspect-ratio:1;transform:translate(-50%,-48%);perspective:900px}
 .ring{position:absolute;inset:0;border-radius:50%;transform-style:preserve-3d;animation:spin 14s linear infinite}
-.ring:before{content:"";position:absolute;inset:0;border-radius:50%;border:6px solid #fff;box-shadow:0 0 30px #fff,0 0 80px rgba(255,255,255,.55),inset 0 0 40px rgba(255,255,255,.5);filter:blur(.6px)}
-.ring:after{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),rgba(160,170,190,.25) 45%,rgba(0,0,0,0) 70%);filter:blur(8px)}
+.ring:before{content:"";position:absolute;inset:0;border-radius:50%;border:6px solid #ffe2a0;box-shadow:0 0 30px #f3c766,0 0 90px rgba(233,196,106,.6),inset 0 0 40px rgba(255,226,160,.5);filter:blur(.6px)}
+.ring:after{content:"";position:absolute;inset:4%;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,236,190,.5),rgba(190,160,90,.22) 45%,rgba(0,0,0,0) 70%);filter:blur(8px)}
 @keyframes spin{from{transform:rotateX(62deg) rotateY(-28deg) rotateZ(0)}to{transform:rotateX(62deg) rotateY(-28deg) rotateZ(360deg)}}
 .hin{position:relative;z-index:2;width:100%;max-width:980px}
 h1{font:800 italic clamp(46px,8.5vw,112px)/1 "Playfair Display",Georgia,serif;letter-spacing:-.01em;text-shadow:0 4px 40px rgba(0,0,0,.6)}
@@ -88,7 +88,7 @@ footer{border-top:1px solid #1c1c1f;padding:30px max(16px,6vw);color:#6d6d73;fon
  <div class="ringwrap"><div class="ring"></div></div>
  <div class="hin">
   <h1>Your idea, on screen.</h1>
-  <div class="sub">You call the shots</div>
+  <div class="sub">Type it. We film it.</div>
   <form class="prompt" onsubmit="event.preventDefault()"><div class="thumb" id="th"></div><div class="bar"></div><input id="pi" aria-label="Your idea"><button class="create">Create Now</button></form>
  </div>
 </header>
