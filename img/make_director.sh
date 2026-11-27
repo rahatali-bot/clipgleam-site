@@ -1,0 +1,3 @@
+#!/bin/bash
+cd "$(dirname "$0")"
+~/.local/bin/mflux-generate-z-image-turbo -q 4 --low-ram --steps 8 --width 832 --height 1216 --seed 5 --prompt "Photorealistic portrait of a stylish charismatic film director in his 40s on a film set, well-groomed short beard, dark-rimmed glasses, black turtleneck under a tailored charcoal wool overcoat, director's viewfinder hanging on a cord around his neck, holding a film clapperboard, confident warm half-smile, looking at camera, three-quarter body shot standing, plain solid very dark navy studio background, gold rim light, cinematic lighting, 85mm lens, high-end editorial photography" --output director.png >/dev/null 2>&1 && echo "made director"

@@ -7,7 +7,7 @@
 <meta name="description" content="AI video studio: script, characters, scenes, voices, music and edit from one sentence. Pay as you go. Early access open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <nav><div class="wrap">
@@ -17,6 +17,11 @@
 </div></nav>
 <div class="filmstrip"></div>
 
+<aside class="director" id="dir" aria-live="polite">
+  <div class="dbub"><b>Max · your AI director guide</b><span id="dsay">Hi, I'm Max. Type one sentence and I'll turn it into a film.</span><button type="button" id="dx" aria-label="Hide the director">×</button><button type="button" id="dvoice" class="dvoice">🔊 Hear Max</button></div>
+  <div class="dimg"></div>
+</aside>
+<button type="button" class="dmini" id="dmini" aria-label="Show the director" hidden></button>
 <header class="hero"><div class="wrap">
   <div class="cine">
     <div class="heroimg"></div><div class="vign"></div>
@@ -41,7 +46,7 @@
   </div>
 </div></header>
 
-<section style="padding-top:40px"><div class="wrap">
+<section id="formats" style="padding-top:40px"><div class="wrap">
   <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:20px;flex-wrap:wrap"><div><div class="eyebrow">What do you want to make?</div><h2>One studio. Every kind of video.</h2><p>Every picture here was made by our own AI system, in our first tests.</p></div><a class="eyebrow" href="showcase.html" style="text-decoration:none">See the showcase →</a></div>
   <div class="grid g4">
     <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_tiktok.jpg);background-position:center 30%"></div><div class="meta"><b>TikTok &amp; Reels</b><small>15–60 s vertical clips</small></div></a>
@@ -65,7 +70,7 @@
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section id="inside" style="padding-top:0"><div class="wrap">
   <div class="sec-head reveal"><div class="eyebrow">Inside the Studio</div><h2>Watch your video being made.</h2><p>Every step is shown live. Every shot is checked before it reaches your edit.</p></div>
   <div class="flow reveal" style="border:0;padding-top:0">
     <div class="mock">
@@ -79,14 +84,14 @@
     </div>
     <div class="mock" style="padding:0;overflow:hidden">
       <div class="cimg" style="background-image:url(img/hero_desert.jpg);aspect-ratio:16/9;margin:0;border-radius:0"></div>
-      <div style="padding:16px 20px"><div class="k">Quality check · shot 12</div><div class="score"><div><b>94</b><small class="k">Sharp</small></div><div><b>97</b><small class="k">Face</small></div><div><b>91</b><small class="k">Motion</small></div><div><b>95</b><small class="k">Plan</small></div></div>
+      <div style="padding:16px 20px"><div class="k">Quality check · shot 12 · example screen</div><div class="score"><div><b>94</b><small class="k">Sharp</small></div><div><b>97</b><small class="k">Face</small></div><div><b>91</b><small class="k">Motion</small></div><div><b>95</b><small class="k">Plan</small></div></div>
       <p style="margin-top:12px"><span class="pill t">PASS</span> <span class="k">A weak shot is retaken automatically.</span></p></div>
     </div>
   </div>
   <p class="reveal"><a class="btn ghost" href="studio.html">Take the full Studio tour →</a></p>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
+<section id="prices" style="padding-top:0"><div class="wrap">
   <div class="sec-head reveal"><div class="eyebrow">Pricing</div><h2>Pay for minutes, not months.</h2><p>Credit packs from £5. Credits last 12 months. No subscription, nothing to cancel.</p></div>
   <div class="rates reveal">
     <div class="rate"><b>£5</b><span>Starter pack · 20 credits</span></div>
@@ -97,7 +102,7 @@
   <a class="btn ghost reveal" href="pricing.html">All prices →</a>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap" style="max-width:820px">
+<section id="faq" style="padding-top:0"><div class="wrap" style="max-width:820px">
   <div class="sec-head reveal"><div class="eyebrow">Questions</div><h2>Quick answers.</h2></div>
   <details class="reveal"><summary>Do I need any editing skills?</summary><p>No. You type an idea and approve the script and characters. ClipGleam does the filming, voices, music and edit.</p></details>
   <details class="reveal"><summary>How long does a video take?</summary><p>A short AI clip takes about 5–10 minutes. One minute of full AI video takes about 20–40 minutes. Template videos are quicker.</p></details>
@@ -116,6 +121,28 @@
 <script>
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
+
+const D=document.getElementById("dir"),SAY=document.getElementById("dsay"),MINI=document.getElementById("dmini");
+const LINES=[["header.hero","right","Hi, I'm Max, your director. Type one sentence above and I'll turn it into a film."],
+["#ex","left","Not sure what to write? Tap an example and watch what we can make."],
+["#formats","right","TikTok, YouTube, adverts, films, cartoons, even claymation. Pick your stage."],
+["#how","left","Four steps. You approve the script and the cast, and I do the filming."],
+["#inside","right","Watch every shot being made. If a shot is weak, I retake it."],
+["#prices","left","No subscription. £5 gets you about 2½ minutes of AI video."],
+["#faq","right","Any questions? The answers are here, or email us."],
+["#early","left","Ready? Send me your idea and I'll save your place."]];
+let cur=-1,VOICE=false;const VB=document.getElementById("dvoice");
+function pickVoice(){const v=speechSynthesis.getVoices();return v.find(x=>/Daniel/.test(x.name)&&/en-GB/.test(x.lang))||v.find(x=>/en-GB/.test(x.lang)&&/male|Arthur|Oliver|George/i.test(x.name))||v.find(x=>/en-GB/.test(x.lang))||v.find(x=>/^en/.test(x.lang));}
+function speak(t){if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);const v=pickVoice();if(v)u.voice=v;u.rate=.98;u.pitch=.9;speechSynthesis.speak(u);}
+if(!("speechSynthesis" in window))VB.hidden=true;
+VB.onclick=()=>{VOICE=!VOICE;VB.textContent=VOICE?"🔇 Mute Max":"🔊 Hear Max";if(VOICE)speak(SAY.textContent);else speechSynthesis.cancel();};
+function say(k){if(k===cur)return;cur=k;const [,side,t]=LINES[k];D.classList.remove("in");
+setTimeout(()=>{D.classList.toggle("left",side==="left");SAY.textContent=t;D.classList.add("in");if(VOICE)speak(t)},350);}
+const dio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const k=LINES.findIndex(l=>document.querySelector(l[0])===e.target);if(k>=0)say(k)}}),{rootMargin:"-45% 0px -45% 0px"});
+LINES.forEach(l=>{const n=document.querySelector(l[0]);if(n)dio.observe(n)});
+setTimeout(()=>say(0),600);
+document.getElementById("dx").onclick=()=>{D.hidden=true;MINI.hidden=false};
+MINI.onclick=()=>{D.hidden=false;MINI.hidden=true};
 
 const EX=[["Cartoon","A cheeky cat, a clever mouse and a friendly dog share breakfast","show_cartoon","3:00"],
 ["Advert","30-second luxury perfume advert, gold light on black glass","show_perfume","0:30"],
