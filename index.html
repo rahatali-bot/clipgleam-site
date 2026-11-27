@@ -7,7 +7,7 @@
 <meta name="description" content="AI video studio: script, characters, scenes, voices, music and edit from one sentence. Pay as you go. Early access open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <nav><div class="wrap">
@@ -16,7 +16,7 @@
   <a class="btn" href="index.html#early">Get early access</a>
 </div></nav>
 <div class="filmstrip"></div>
-<div id="max" class="max" aria-live="polite"><div class="mbub"><b>Max · your AI director guide</b><span id="msay"></span><div class="mctl"><button type="button" id="mvoice">🔊 Hear Max</button><button type="button" id="mhide">Hide</button></div></div><img class="mfig" src="img/max.webp" alt="Max, the ClipGleam AI director guide" width="450" height="820"></div>
+<div id="max" class="max" aria-live="polite"><div class="mbub"><b>Max · your AI director guide</b><span id="msay"></span><div class="mctl"><button type="button" id="mvoice">🔊 Hear Max</button><button type="button" id="mhide">Hide</button></div></div><img class="mfig" src="img/max3.webp" alt="Max, the ClipGleam AI director guide" width="538" height="900"></div>
 <button type="button" class="mmini" id="mmini" aria-label="Show Max" hidden></button>
 
 <header class="hero"><div class="wrap">
@@ -156,8 +156,8 @@ function go(k){if(k===cur)return;cur=k;aud.pause();M.classList.remove("talk");cl
  if(small()){M.style.left="";talk(k);return}
  const ns=k%2?"left":"right";
  if(ns===side&&M.classList.contains("on")){talk(k);return}
- side=ns;M.classList.add("walk");M.classList.toggle("faceL",ns==="left");SAY.textContent="";
- M.style.left=x(ns)+"px";t1=setTimeout(()=>{M.classList.remove("walk");talk(k)},1700);}
+ side=ns;M.classList.add("walk");M.classList.toggle("fr",ns==="right");SAY.textContent="";
+ M.style.left=x(ns)+"px";t1=setTimeout(()=>{M.classList.remove("walk");M.classList.toggle("fr",side==="left");talk(k)},1700);}
 VB.onclick=()=>{voice=!voice;ss("maxVoice",voice?"1":"0");VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";if(voice&&cur>=0)talk(cur);else{aud.pause();M.classList.remove("talk")}};
 VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";
 function toCircle(){const a=M.getBoundingClientRect(),b=MINI.getBoundingClientRect();return [b.left+b.width/2-(a.left+a.width/2),b.top+b.height/2-(a.top+a.height/2)]}

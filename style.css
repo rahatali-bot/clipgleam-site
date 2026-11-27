@@ -289,3 +289,13 @@ a.tile{text-decoration:none}
 .mmini{animation:mpop .4s ease-out}
 @keyframes mpop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
 @media(prefers-reduced-motion:reduce){.max{transition:opacity .3s}}
+/* v8: swagger strut + cheeky arrival */
+.max.walk .mfig{animation:mstrut .5s cubic-bezier(.4,0,.3,1) infinite}
+@keyframes mstrut{0%{transform:translateY(0) rotate(-3deg) skewX(1deg)}25%{transform:translateY(-12px) rotate(0deg)}50%{transform:translateY(0) rotate(3deg) skewX(-1deg)}75%{transform:translateY(-12px) rotate(0deg)}100%{transform:translateY(0) rotate(-3deg) skewX(1deg)}}
+.max.talk .mfig{animation:mswag 1.8s ease-in-out infinite}
+@keyframes mswag{0%,100%{transform:rotate(0)}20%{transform:rotate(1.8deg) translateY(-3px)}40%{transform:rotate(-1deg)}60%{transform:rotate(1.2deg) translateY(-2px)}80%{transform:rotate(-.6deg)}}
+.mbub{animation:mbubpop .35s cubic-bezier(.3,1.6,.5,1)}
+@keyframes mbubpop{from{transform:scale(.6) rotate(-4deg);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){.max.walk .mfig,.max.talk .mfig,.mbub{animation:none}}
+.max.fr .mfig{scale:-1 1}
+.mmini{background-image:url(img/max3.webp);background-position:60% 2%;background-size:190%}
