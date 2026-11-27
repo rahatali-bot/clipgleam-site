@@ -43,8 +43,8 @@ h1{font:400 clamp(52px,8vw,118px)/.92 "Instrument Serif",Georgia,serif;letter-sp
 h1 em{color:var(--gold2);font-style:italic}
 .lead{color:#e4ddcf;font-size:18px;margin-top:14px;max-width:460px}
 /* slate */
-.slate{background:#0d0d0f;border:1px solid #2a2a2e;border-radius:10px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.clap{height:34px;transform-origin:0 100%;background:repeating-linear-gradient(-55deg,#f5f1e8 0 22px,#0d0d0f 22px 44px);transition:transform .18s cubic-bezier(.5,0,.8,.4)}
+.slate{background:#0d0d0f;border:1px solid #2a2a2e;border-radius:10px;overflow:visible;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.clap{height:34px;border-radius:9px 9px 0 0;transform-origin:0 100%;background:repeating-linear-gradient(-55deg,#f5f1e8 0 22px,#0d0d0f 22px 44px);transition:transform .18s cubic-bezier(.5,0,.8,.4)}
 .slate.snap .clap{animation:clap .5s}
 @keyframes clap{0%{transform:rotate(-16deg)}45%{transform:rotate(-16deg)}60%{transform:rotate(0)}70%{transform:rotate(-3deg)}80%{transform:rotate(0)}}
 .clap.up{transform:rotate(-16deg)}
