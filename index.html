@@ -6,23 +6,29 @@
 <title>ClipGleam — type an idea, leave with a video</title>
 <meta name="description" content="AI video studio: script, characters, scenes, voices, music and edit from one sentence. Pay as you go. Early access open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <nav><div class="wrap">
-  <a class="logo" href="index.html"><i></i>Clip<b>Gleam</b></a>
+  <a class="logo" href="index.html"><span class="cam"><span class="lens"></span><span class="beam"></span></span>CLIPGLEAM</a>
   <div class="links"><a href="index.html" class=on>Home</a><a href="studio.html">Studio</a><a href="services.html">Services</a><a href="showcase.html">Showcase</a><a href="pricing.html">Pricing</a><a href="learn.html">Learn</a></div>
   <a class="btn" href="index.html#early">Get early access</a>
 </div></nav>
+<div class="filmstrip"></div>
 
 <header class="hero"><div class="wrap">
-  <div class="eyebrow">AI video studio · pay as you go</div>
-  <h1>Type an idea. <span class="gleam">Leave with a video.</span></h1>
-  <p class="lead">Script, characters, scenes, voices, music and edit, made for you from one sentence. No subscription: buy credits and pay only for what you make.</p>
-  <form class="ideabox" id="idea"><input id="ideaIn" placeholder="Type your idea… e.g. a happy dog and a clever mouse save the neighbourhood party" maxlength="300"><button class="btn" type="submit">Create</button></form>
-  <div class="chips" id="fmt"><button class="chip on" type="button">Short</button><button class="chip" type="button">YouTube</button><button class="chip" type="button">Film</button><button class="chip" type="button">Advert</button><button class="chip" type="button">Music video</button><button class="chip" type="button">Cartoon</button></div>
-  <div class="note">Early access: press Create and we'll save your idea and your place.</div>
+  <div class="cine">
+    <div class="sky"></div><div class="sunb"></div><div class="flare"></div><div class="fort"></div><div class="dune"></div><div class="rider">🏇</div><div class="vign"></div>
+    <div class="panel">
+      <div class="eyebrow">From idea to video</div>
+      <h1>Type an idea. <span class="gleam">Leave with a video.</span></h1>
+      <p class="lead">Script, cast, scenes, voices, music and edit, made for you from start to finish. No subscription: pay only for what you make.</p>
+      <form class="ideabox" id="idea"><input id="ideaIn" placeholder="Type your idea…" maxlength="300"><button class="btn" type="submit">Create</button></form>
+      <div class="chips" id="fmt"><button class="chip on" type="button">Short</button><button class="chip" type="button">YouTube</button><button class="chip" type="button">Film</button><button class="chip" type="button">Advert</button><button class="chip" type="button">Music video</button><button class="chip" type="button">Cartoon</button></div>
+      <div class="note">Early access: press Create and we'll save your idea and your place.</div>
+    </div>
+  </div>
 
   <div class="demo">
     <div class="prompt"><small>Your idea</small><div class="typed" id="typed"></div></div>
@@ -36,7 +42,7 @@
 </div></header>
 
 <section style="padding-top:20px"><div class="wrap">
-  <div class="sec-head reveal"><div class="eyebrow">What you can make</div><h2>One studio. Many kinds of video.</h2></div>
+  <div class="sec-head reveal"><div class="eyebrow">Made with ClipGleam · first projects</div><h2>One studio. Many kinds of video.</h2></div>
   <div class="grid g4">
     <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a2"><span>🐶</span></div><div class="meta"><b>Kids cartoon</b><small>Series-ready characters</small></div></a>
     <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a3"><span>🧴</span></div><div class="meta"><b>Product advert</b><small>Bold titles, voice-over</small></div></a>
