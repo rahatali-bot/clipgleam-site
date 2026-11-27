@@ -262,3 +262,23 @@ a.tile{text-decoration:none}
 .dvoice:hover{border-color:var(--teal)}
 .dbub button#dx{position:absolute}
 .dbub .dvoice{position:static;font-size:12px;color:var(--ink)}
+/* v6: Max walks — every page */
+.director,.dmini{display:none!important}
+.max{position:fixed;bottom:0;left:0;z-index:15;display:flex;flex-direction:column;align-items:center;pointer-events:none;opacity:0;transition:left 1.7s cubic-bezier(.45,.05,.35,1),opacity .6s}
+.max.on{opacity:1}
+.mfig{height:min(58vh,520px);width:auto;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6));transform-origin:50% 100%}
+.max.walk .mfig{animation:mwalk .42s ease-in-out infinite alternate}
+.max.talk .mfig{animation:mtalk 2.4s ease-in-out infinite}
+@keyframes mwalk{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(-9px) rotate(1.4deg)}}
+@keyframes mtalk{0%,100%{transform:rotate(0) scale(1)}30%{transform:rotate(.6deg) scale(1.006)}70%{transform:rotate(-.5deg) scale(1.004)}}
+.mbub{pointer-events:auto;max-width:250px;background:var(--card);border:1px solid var(--teal);border-radius:16px;padding:12px 14px;font-size:14px;line-height:1.45;color:var(--ink);box-shadow:0 10px 30px rgba(0,0,0,.5);margin-bottom:-14px;position:relative;z-index:2;transition:opacity .3s}
+.max.walk .mbub{opacity:0}
+.mbub b{display:block;font-family:Jost,sans-serif;color:var(--teal);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.mbub:empty{display:none}
+.mctl{display:flex;gap:6px;margin-top:8px}
+.mctl button{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:4px 10px;font:12px Inter,sans-serif;cursor:pointer}
+.mctl button:hover{border-color:var(--teal)}
+.mmini{position:fixed;right:16px;bottom:16px;z-index:15;width:64px;height:64px;border-radius:50%;border:2px solid var(--teal);background:#0a0e1a url(img/max.webp) center 6%/150% no-repeat;cursor:pointer}
+@media(max-width:1300px){.mfig{height:min(44vh,380px)}.mbub{max-width:210px;font-size:13px}}
+@media(max-width:899px){.max{left:auto!important;right:12px;bottom:12px;transition:opacity .6s}.mfig{display:none}.mbub{margin:0;max-width:min(280px,80vw)}}
+@media(prefers-reduced-motion:reduce){.max{transition:opacity .3s}.max.walk .mfig,.max.talk .mfig{animation:none}}

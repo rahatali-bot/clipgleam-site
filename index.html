@@ -7,7 +7,7 @@
 <meta name="description" content="AI video studio: script, characters, scenes, voices, music and edit from one sentence. Pay as you go. Early access open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <nav><div class="wrap">
@@ -16,12 +16,9 @@
   <a class="btn" href="index.html#early">Get early access</a>
 </div></nav>
 <div class="filmstrip"></div>
+<div id="max" class="max" aria-live="polite"><div class="mbub"><b>Max · your AI director guide</b><span id="msay"></span><div class="mctl"><button type="button" id="mvoice">🔊 Hear Max</button><button type="button" id="mhide">Hide</button></div></div><img class="mfig" src="img/max.webp" alt="Max, the ClipGleam AI director guide" width="450" height="820"></div>
+<button type="button" class="mmini" id="mmini" aria-label="Show Max" hidden></button>
 
-<aside class="director" id="dir" aria-live="polite">
-  <div class="dbub"><b>Max · your AI director guide</b><span id="dsay">Hi, I'm Max. Type one sentence and I'll turn it into a film.</span><button type="button" id="dx" aria-label="Hide the director">×</button><button type="button" id="dvoice" class="dvoice">🔊 Hear Max</button></div>
-  <div class="dimg"></div>
-</aside>
-<button type="button" class="dmini" id="dmini" aria-label="Show the director" hidden></button>
 <header class="hero"><div class="wrap">
   <div class="cine">
     <div class="heroimg"></div><div class="vign"></div>
@@ -122,27 +119,7 @@
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
 
-const D=document.getElementById("dir"),SAY=document.getElementById("dsay"),MINI=document.getElementById("dmini");
-const LINES=[["header.hero","right","Hi, I'm Max, your director. Type one sentence above and I'll turn it into a film."],
-["#ex","left","Not sure what to write? Tap an example and watch what we can make."],
-["#formats","right","TikTok, YouTube, adverts, films, cartoons, even claymation. Pick your stage."],
-["#how","left","Four steps. You approve the script and the cast, and I do the filming."],
-["#inside","right","Watch every shot being made. If a shot is weak, I retake it."],
-["#prices","left","No subscription. £5 gets you about 2½ minutes of AI video."],
-["#faq","right","Any questions? The answers are here, or email us."],
-["#early","left","Ready? Send me your idea and I'll save your place."]];
-let cur=-1,VOICE=false;const VB=document.getElementById("dvoice");
-function pickVoice(){const v=speechSynthesis.getVoices();return v.find(x=>/Daniel/.test(x.name)&&/en-GB/.test(x.lang))||v.find(x=>/en-GB/.test(x.lang)&&/male|Arthur|Oliver|George/i.test(x.name))||v.find(x=>/en-GB/.test(x.lang))||v.find(x=>/^en/.test(x.lang));}
-function speak(t){if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);const v=pickVoice();if(v)u.voice=v;u.rate=.98;u.pitch=.9;speechSynthesis.speak(u);}
-if(!("speechSynthesis" in window))VB.hidden=true;
-VB.onclick=()=>{VOICE=!VOICE;VB.textContent=VOICE?"🔇 Mute Max":"🔊 Hear Max";if(VOICE)speak(SAY.textContent);else speechSynthesis.cancel();};
-function say(k){if(k===cur)return;cur=k;const [,side,t]=LINES[k];D.classList.remove("in");
-setTimeout(()=>{D.classList.toggle("left",side==="left");SAY.textContent=t;D.classList.add("in");if(VOICE)speak(t)},350);}
-const dio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const k=LINES.findIndex(l=>document.querySelector(l[0])===e.target);if(k>=0)say(k)}}),{rootMargin:"-45% 0px -45% 0px"});
-LINES.forEach(l=>{const n=document.querySelector(l[0]);if(n)dio.observe(n)});
-setTimeout(()=>say(0),600);
-document.getElementById("dx").onclick=()=>{D.hidden=true;MINI.hidden=false};
-MINI.onclick=()=>{D.hidden=false;MINI.hidden=true};
+
 
 const EX=[["Cartoon","A cheeky cat, a clever mouse and a friendly dog share breakfast","show_cartoon","3:00"],
 ["Advert","30-second luxury perfume advert, gold light on black glass","show_perfume","0:30"],
@@ -166,6 +143,34 @@ b.href="mailto:hello@clipgleam.com?subject="+encodeURIComponent("ClipGleam early
 document.getElementById("early").scrollIntoView({behavior:"smooth"});
 b.textContent=v?"Send my idea & save my place":"Get early access";};
 
+
+(()=>{const L=[["header.hero", "Ahh, a visitor! Max. Director. Legend, mostly. Type one sentence up there, darling, and I'll turn it into a film."], ["#ex", "No idea? Splendid. Neither did I, once. Tap an example and borrow it. I won't tell a soul."], ["#formats", "TikTok, YouTube, adverts, films, cartoons... even claymation. Yes, I play with clay. Professionally."], ["#how", "Four steps. You approve the script and the cast. I do the shouting. Action!"], ["#inside", "Watch every shot being made. Bad shot? I retake it. Dramatically. With a sigh."], ["#prices", "No subscription! Five pounds buys about two and a half minutes of film. Cheaper than my hat. Don't ask about the hat."], ["#faq", "Questions? Answers are right here. If not, email us. I read everything... eventually."], ["#early", "Right then. Send me your idea, and I'll save your place. The red carpet is being... ironed."]],PG="index",M=document.getElementById("max"),SAY=document.getElementById("msay"),VB=document.getElementById("mvoice"),MINI=document.getElementById("mmini");
+if(!L.length){M.hidden=true;return}
+const ls=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ss=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+let voice=ls("maxVoice")==="1",cur=-1,side="right",aud=new Audio(),t1;
+const small=()=>innerWidth<900;
+function x(sd){return sd==="left"?12:innerWidth-M.offsetWidth-12}
+function talk(k){SAY.textContent=L[k][1];M.classList.add("talk");if(voice){aud.src="voice/"+PG+"_"+k+".m4a";aud.play().catch(()=>{voice=false;VB.textContent="🔊 Hear Max"})}}
+aud.onended=()=>M.classList.remove("talk");
+function go(k){if(k===cur)return;cur=k;aud.pause();M.classList.remove("talk");clearTimeout(t1);
+ if(small()){M.style.left="";talk(k);return}
+ const ns=k%2?"left":"right";
+ if(ns===side&&M.classList.contains("on")){talk(k);return}
+ side=ns;M.classList.add("walk");M.classList.toggle("faceL",ns==="left");SAY.textContent="";
+ M.style.left=x(ns)+"px";t1=setTimeout(()=>{M.classList.remove("walk");talk(k)},1700);}
+VB.onclick=()=>{voice=!voice;ss("maxVoice",voice?"1":"0");VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";if(voice&&cur>=0)talk(cur);else{aud.pause();M.classList.remove("talk")}};
+VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";
+document.getElementById("mhide").onclick=()=>{M.hidden=true;MINI.hidden=false;aud.pause();ss("maxHidden","1")};
+MINI.onclick=()=>{M.hidden=false;MINI.hidden=true;ss("maxHidden","0");M.style.left=x(side)+"px"};
+if(ls("maxHidden")==="1"){M.hidden=true;MINI.hidden=false}
+M.style.left=(small()?"":x("right")+"px");
+requestAnimationFrame(()=>{M.classList.add("on");});
+const els=L.map(l=>document.querySelector(l[0]));
+const mo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const k=els.indexOf(e.target);if(k>=0)go(k)}}),{rootMargin:"-40% 0px -40% 0px"});
+els.forEach(n=>n&&mo.observe(n));
+setTimeout(()=>{if(cur<0)go(0)},500);
+addEventListener("resize",()=>{if(!small())M.style.left=x(side)+"px"});
+})();
 </script>
 </body>
 </html>

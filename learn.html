@@ -7,7 +7,7 @@
 <meta name="description" content="Quick start, shot language and FAQ for ClipGleam.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <nav><div class="wrap">
@@ -16,6 +16,8 @@
   <a class="btn" href="index.html#early">Get early access</a>
 </div></nav>
 <div class="filmstrip"></div>
+<div id="max" class="max" aria-live="polite"><div class="mbub"><b>Max · your AI director guide</b><span id="msay"></span><div class="mctl"><button type="button" id="mvoice">🔊 Hear Max</button><button type="button" id="mhide">Hide</button></div></div><img class="mfig" src="img/max.webp" alt="Max, the ClipGleam AI director guide" width="450" height="820"></div>
+<button type="button" class="mmini" id="mmini" aria-label="Show Max" hidden></button>
 
 <header class="page-hero"><div class="wrap">
   <div class="eyebrow">Learn</div>
@@ -45,6 +47,34 @@
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
 
+
+(()=>{const L=[["header.page-hero", "Class is in session! These tips get you a better video, first time. No homework."], ["body > section:nth-of-type(1)", "Short, clear ideas work best. Give me the mood, the place and the star. I'll handle the drama."], ["body > section:nth-of-type(2)", "And here are the answers to the common questions. Yes, even the strange ones."], ["#early", "Ready when you are. Lights... camera... you!"]],PG="learn",M=document.getElementById("max"),SAY=document.getElementById("msay"),VB=document.getElementById("mvoice"),MINI=document.getElementById("mmini");
+if(!L.length){M.hidden=true;return}
+const ls=k=>{try{return localStorage.getItem(k)}catch(e){return null}},ss=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+let voice=ls("maxVoice")==="1",cur=-1,side="right",aud=new Audio(),t1;
+const small=()=>innerWidth<900;
+function x(sd){return sd==="left"?12:innerWidth-M.offsetWidth-12}
+function talk(k){SAY.textContent=L[k][1];M.classList.add("talk");if(voice){aud.src="voice/"+PG+"_"+k+".m4a";aud.play().catch(()=>{voice=false;VB.textContent="🔊 Hear Max"})}}
+aud.onended=()=>M.classList.remove("talk");
+function go(k){if(k===cur)return;cur=k;aud.pause();M.classList.remove("talk");clearTimeout(t1);
+ if(small()){M.style.left="";talk(k);return}
+ const ns=k%2?"left":"right";
+ if(ns===side&&M.classList.contains("on")){talk(k);return}
+ side=ns;M.classList.add("walk");M.classList.toggle("faceL",ns==="left");SAY.textContent="";
+ M.style.left=x(ns)+"px";t1=setTimeout(()=>{M.classList.remove("walk");talk(k)},1700);}
+VB.onclick=()=>{voice=!voice;ss("maxVoice",voice?"1":"0");VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";if(voice&&cur>=0)talk(cur);else{aud.pause();M.classList.remove("talk")}};
+VB.textContent=voice?"🔇 Mute":"🔊 Hear Max";
+document.getElementById("mhide").onclick=()=>{M.hidden=true;MINI.hidden=false;aud.pause();ss("maxHidden","1")};
+MINI.onclick=()=>{M.hidden=false;MINI.hidden=true;ss("maxHidden","0");M.style.left=x(side)+"px"};
+if(ls("maxHidden")==="1"){M.hidden=true;MINI.hidden=false}
+M.style.left=(small()?"":x("right")+"px");
+requestAnimationFrame(()=>{M.classList.add("on");});
+const els=L.map(l=>document.querySelector(l[0]));
+const mo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const k=els.indexOf(e.target);if(k>=0)go(k)}}),{rootMargin:"-40% 0px -40% 0px"});
+els.forEach(n=>n&&mo.observe(n));
+setTimeout(()=>{if(cur<0)go(0)},500);
+addEventListener("resize",()=>{if(!small())M.style.left=x(side)+"px"});
+})();
 </script>
 </body>
 </html>
