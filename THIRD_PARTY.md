@@ -9,3 +9,5 @@ ClipGleam's own code and pictures are © 2026 ClipGleam. Only permissively licen
 | Didot (macOS system font) | Mock label on the perfume still (image only, font not shipped) | Apple system font, rendered into an image |
 
 Rule: no AGPL, GPL or non-commercial code goes inside ClipGleam. Those tools may only be studied or run as separate internal tools.
+| Kokoro-82M (bm_fable voice) | Max the director voice lines (pre-recorded audio) | Apache-2.0 |
+| rembg (u2net_human_seg) | Cut Max out of his background (image only) | MIT |
