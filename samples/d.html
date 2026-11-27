@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipGleam · Sample D · Template Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0b1a;--ink:#f7f5ff;--mute:#aaa6c6;--card:#181530;--line:#2b2750;--p:#ff4f9a;--o:#ff8a3d;--y:#ffd23f;--g:#2fd18a;--b:#4f8bff;--v:#9a6bff}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+.tag{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:60;background:#fff;color:#000;font:600 12px Inter;padding:6px 12px;border-radius:99px;white-space:nowrap}
+nav{position:sticky;top:0;z-index:40;display:flex;gap:14px;justify-content:space-between;align-items:center;padding:12px max(16px,3vw);background:rgba(13,11,26,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.logo{font:700 22px Fredoka,sans-serif;background:linear-gradient(90deg,var(--y),var(--p),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{border:0;border-radius:14px;padding:12px 20px;font:700 15px Fredoka;color:#fff;background:linear-gradient(90deg,var(--p),var(--o));box-shadow:0 8px 24px rgba(255,79,154,.35);text-decoration:none;display:inline-block}
+.hero{position:relative;overflow:hidden;padding:56px max(16px,4vw) 40px;text-align:center}
+.blobs i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 14s ease-in-out infinite alternate}
+.blobs i:nth-child(1){width:420px;height:420px;background:var(--p);left:-120px;top:-120px}
+.blobs i:nth-child(2){width:380px;height:380px;background:var(--b);right:-100px;top:20px;animation-delay:-5s}
+.blobs i:nth-child(3){width:300px;height:300px;background:var(--y);left:40%;bottom:-200px;animation-delay:-9s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.15)}}
+.hin{position:relative;z-index:2;max-width:860px;margin:0 auto}
+h1{font:700 clamp(38px,6.5vw,76px)/1.02 Fredoka,sans-serif}
+h1 span{background:linear-gradient(90deg,var(--y),var(--p),var(--b),var(--y));background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:300%}}
+.hin p{color:var(--mute);font-size:19px;margin:14px auto 24px;max-width:600px}
+.two{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.choice{flex:1;min-width:250px;max-width:400px;text-align:left;border-radius:20px;padding:20px;border:2px solid var(--line);background:rgba(24,21,48,.85);color:var(--ink);transition:transform .2s,border-color .2s}
+.choice:hover{transform:translateY(-4px);border-color:var(--p)}
+.choice b{display:block;font:700 22px Fredoka;margin-bottom:4px}
+.choice small{color:var(--mute)}
+.choice .ic{font-size:30px;display:block;margin-bottom:6px}
+.box{display:none;gap:8px;max-width:700px;margin:18px auto 0;background:var(--card);border:2px solid var(--p);border-radius:18px;padding:8px}
+.box.on{display:flex}
+.box input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:16px Inter;padding:0 12px;outline:none}
+section{padding:36px max(16px,3vw) 60px;max-width:1360px;margin:0 auto}
+.head{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+h2{font:700 clamp(28px,4vw,42px) Fredoka,sans-serif}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;scrollbar-width:none}
+.cats button{flex:none;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:8px 16px;font-weight:600;font-size:14px}
+.cats button.on{border-color:transparent;background:var(--c,var(--p));color:#0d0b1a}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.t{position:relative;border-radius:18px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
+.t:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.t .im{aspect-ratio:16/10;background:center/cover;transition:transform .8s}
+.t.v .im{aspect-ratio:9/12}
+.t:hover .im{transform:scale(1.07)}
+.t .badge{position:absolute;top:10px;left:10px;font:700 11px Inter;letter-spacing:.04em;padding:4px 9px;border-radius:99px;color:#0d0b1a;background:var(--c)}
+.t .len{position:absolute;top:10px;right:10px;font:600 11px Inter;padding:4px 8px;border-radius:99px;background:rgba(0,0,0,.6)}
+.t .meta{padding:12px 14px 14px}
+.t b{display:block;font:700 17px Fredoka}
+.t small{color:var(--mute);font-size:13px}
+.use{position:absolute;inset:auto 12px 76px 12px;opacity:0;transform:translateY(8px);transition:.25s;border:0;border-radius:12px;padding:11px;font:700 15px Fredoka;background:#fff;color:#0d0b1a}
+.t:hover .use,.t:focus-within .use{opacity:1;transform:none}
+@media(hover:none){.use{opacity:1;transform:none;position:static;margin:0 14px 14px;width:calc(100% - 28px)}}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.steps div{border-radius:18px;padding:18px;background:var(--card);border:1px solid var(--line)}
+.steps b{font:700 30px Fredoka;color:var(--c)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,120px);background:#fff;color:#0d0b1a;padding:12px 18px;border-radius:14px;font-weight:600;transition:transform .35s;z-index:70;max-width:90vw}
+.toast.on{transform:translate(-50%,0)}
+</style></head><body>
+<div class="tag">Sample D · Template Studio (easy, colourful, many templates)</div>
+<nav><span class="logo">ClipGleam</span><a class="btn" href="#tpl">Browse templates</a></nav>
+<header class="hero"><div class="blobs"><i></i><i></i><i></i></div>
+ <div class="hin"><h1>Make a video in <span>one click.</span></h1>
+ <p>Start from a ready template, or type your own idea. Change anything. No editing skills.</p>
+ <div class="two">
+  <button class="choice" type="button" onclick="document.getElementById('tpl').scrollIntoView({behavior:'smooth'})"><span class="ic">🎬</span><b>Pick a template</b><small>Choose from ready-made videos and make it yours</small></button>
+  <button class="choice" type="button" onclick="const b=document.getElementById('box');b.classList.add('on');b.querySelector('input').focus()"><span class="ic">✍️</span><b>Type my own idea</b><small>One sentence is enough</small></button>
+ </div>
+ <form class="box" id="box" onsubmit="event.preventDefault();toast('Saved! In the real studio this starts your video.')"><input placeholder="A dog who dreams of flying a plane…"><button class="btn">Create</button></form>
+ </div>
+</header>
+
+<section id="tpl">
+ <div class="head"><h2>Choose a template</h2><small style="color:var(--mute)">Tap one, then change the words, faces, voice and music.</small></div>
+ <div class="cats" id="cats"></div>
+ <div class="grid" id="grid"></div>
+</section>
+
+<section><h2 style="margin-bottom:16px">Three clicks to your video</h2>
+ <div class="steps"><div style="--c:var(--y)"><b>1</b><p>Pick a template or type an idea</p></div><div style="--c:var(--p)"><b>2</b><p>Swap the text, characters, voice and music</p></div><div style="--c:var(--b)"><b>3</b><p>Press Make and download for TikTok, YouTube or anywhere</p></div></div>
+</section>
+<div class="toast" id="toast"></div>
+<script>
+const C={"TikTok":"#ff4f9a","YouTube":"#ff8a3d","Adverts":"#ffd23f","Cartoons":"#4f8bff","Clay":"#2fd18a","Films":"#9a6bff","Music":"#ff4f9a","Business":"#4f8bff"};
+const T=[
+["TikTok","Rooftop dance promo","show_tiktok","0:15",1,"Your product, a dancer and the city at sunset"],
+["TikTok","Day in my life","show_youtube","0:30",1,"Fast cuts, captions, upbeat music"],
+["Adverts","Luxury perfume","show_perfume","0:30",0,"Gold splash, petals, slow motion"],
+["Adverts","Restaurant special","show_presenter","0:20",0,"Your dish, price and a friendly voice"],
+["Cartoons","Breakfast friends","show_cartoon","1:00",0,"Dog, cat and mouse, a funny morning"],
+["Cartoons","Kids bedtime story","show_cartoon","3:00",0,"A gentle story with your characters"],
+["Clay","Tiny village tale","show_clay","1:00",0,"Handmade clay look, stop-motion feel"],
+["Films","Desert rider","hero_desert","2:00",0,"Epic journey, fortress at sunset"],
+["Films","Battle at dawn","show_epic","2:30",0,"Armies, banners and mist"],
+["Films","Space mission","show_scifi","1:30",0,"Red alarms and a brave astronaut"],
+["Music","Neon rain video","show_neon","3:00",0,"Cut to the beat of your song"],
+["YouTube","Creator intro","show_youtube","0:10",0,"Bold intro for your channel"],
+["YouTube","Nature documentary","show_delta","5:00",0,"Drone shots and calm narration"],
+["Business","Explainer presenter","show_presenter","1:00",0,"A presenter explains your service"],
+["Business","Sports highlight","show_cricket","0:45",0,"Big moments, crowd and drama"]];
+const cats=["All",...new Set(T.map(t=>t[0]))];let cur="All";
+const ce=document.getElementById("cats"),ge=document.getElementById("grid");
+function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function draw(){ce.innerHTML=cats.map(c=>`<button type="button" class="${c===cur?"on":""}" style="--c:${C[c]||"#fff"}" data-c="${c}">${c}</button>`).join("");
+ge.innerHTML=T.filter(t=>cur==="All"||t[0]===cur).map(t=>`<div class="t ${t[4]?"v":""}" style="--c:${C[t[0]]}"><div class="im" style="background-image:url(../img/${t[2]}.jpg)"></div><span class="badge">${t[0]}</span><span class="len">${t[3]}</span><button class="use" type="button" data-n="${esc(t[1])}">Use this template</button><div class="meta"><b>${esc(t[1])}</b><small>${esc(t[5])}</small></div></div>`).join("");}
+ce.onclick=e=>{const b=e.target.closest("button");if(b){cur=b.dataset.c;draw()}};
+ge.onclick=e=>{const b=e.target.closest(".use");if(b)toast("“"+b.dataset.n+"” chosen. In the real studio this opens it, ready to change.")};
+let tt;function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2800)}
+draw();
+</script>
+</body></html>
