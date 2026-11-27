@@ -7,7 +7,7 @@
 <meta name="description" content="AI video studio: script, characters, scenes, voices, music and edit from one sentence. Pay as you go. Early access open.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <nav><div class="wrap">
@@ -19,7 +19,7 @@
 
 <header class="hero"><div class="wrap">
   <div class="cine">
-    <div class="sky"></div><div class="sunb"></div><div class="flare"></div><div class="fort"></div><div class="dune"></div><div class="rider">🏇</div><div class="vign"></div>
+    <div class="heroimg"></div><div class="vign"></div>
     <div class="panel">
       <div class="eyebrow">From idea to video</div>
       <h1>Type an idea. <span class="gleam">Leave with a video.</span></h1>
@@ -30,36 +30,60 @@
     </div>
   </div>
 
+  <div class="note" style="text-align:center;margin-top:16px">No card needed to join · pay as you go from £5 · no subscription</div>
+
+  <div class="sec-head reveal" style="margin:64px auto 18px;text-align:center"><div class="eyebrow">Try an example</div><h2>Your idea → your video.</h2><p>Tap an idea and see the kind of picture ClipGleam makes from it.</p></div>
+  <div class="chips" id="ex"></div>
   <div class="demo">
-    <div class="prompt"><small>Your idea</small><div class="typed" id="typed"></div></div>
+    <div class="prompt"><small>Your idea</small><div class="typed" id="typed"></div><button class="btn ghost" type="button" id="useIdea" style="margin-top:6px">Use this idea ↑</button></div>
     <div class="arrow">→</div>
-    <div class="screen">
-      <small>Your video</small>
-      <div class="scene"><div class="sun"></div><div class="hill"></div><div class="char" id="char">🐕</div></div>
-      <div class="bar">▶<div class="track"><i></i></div>0:24</div>
-    </div>
+    <div class="screen"><small>Your video</small><div class="shot" id="shot"></div><div class="bar">▶<div class="track"><i></i></div><span id="dur">0:30</span></div></div>
   </div>
 </div></header>
 
-<section style="padding-top:20px"><div class="wrap">
-  <div class="sec-head reveal"><div class="eyebrow">Made with ClipGleam · first projects</div><h2>One studio. Many kinds of video.</h2></div>
+<section style="padding-top:40px"><div class="wrap">
+  <div class="sec-head reveal" style="display:flex;justify-content:space-between;align-items:end;max-width:none;gap:20px;flex-wrap:wrap"><div><div class="eyebrow">What do you want to make?</div><h2>One studio. Every kind of video.</h2><p>Every picture here was made by our own AI system, in our first tests.</p></div><a class="eyebrow" href="showcase.html" style="text-decoration:none">See the showcase →</a></div>
   <div class="grid g4">
-    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a2"><span>🐶</span></div><div class="meta"><b>Kids cartoon</b><small>Series-ready characters</small></div></a>
-    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a3"><span>🧴</span></div><div class="meta"><b>Product advert</b><small>Bold titles, voice-over</small></div></a>
-    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a4"><span>🎤</span></div><div class="meta"><b>Music video</b><small>Cut to your track</small></div></a>
-    <a class="tile reveal" href="showcase.html" style="text-decoration:none"><div class="art a1"><span>🏇</span></div><div class="meta"><b>Short film</b><small>Scene by scene</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_tiktok.jpg);background-position:center 30%"></div><div class="meta"><b>TikTok &amp; Reels</b><small>15–60 s vertical clips</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_youtube.jpg)"></div><div class="meta"><b>YouTube videos</b><small>Episodes &amp; explainers, 16:9</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_perfume.jpg)"></div><div class="meta"><b>Adverts</b><small>Product &amp; brand spots, 10–60 s</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_epic.jpg)"></div><div class="meta"><b>Films</b><small>Short films, scene by scene</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_cartoon.jpg)"></div><div class="meta"><b>Cartoons</b><small>Same characters every episode</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_clay.jpg)"></div><div class="meta"><b>Claymation</b><small>Handmade stop-motion look</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_neon.jpg)"></div><div class="meta"><b>Music videos</b><small>Cut to your track</small></div></a>
+    <a class="tile reveal" href="services.html"><div class="art ph" style="background-image:url(img/show_presenter.jpg)"></div><div class="meta"><b>Business &amp; training</b><small>Presenters, explainers</small></div></a>
   </div>
 </div></section>
 
 <section id="how" style="padding-top:0"><div class="wrap">
   <div class="sec-head reveal"><div class="eyebrow">How it works</div><h2>Four steps. No editing skills.</h2></div>
   <div class="grid g4">
-    <div class="card reveal"><div class="n">01</div><h3>Type your idea</h3><p>One sentence is enough. Add a script or pictures if you have them.</p></div>
-    <div class="card reveal"><div class="n">02</div><h3>Approve script &amp; cast</h3><p>ClipGleam writes the scenes and designs the characters. Change anything.</p></div>
-    <div class="card reveal"><div class="n">03</div><h3>Watch it being made</h3><p>Live progress, shot by shot. Every shot passes a quality check.</p></div>
-    <div class="card reveal"><div class="n">04</div><h3>Export &amp; share</h3><p>TikTok, Reels, YouTube or widescreen, ready to post.</p></div>
+    <div class="card reveal"><div class="cimg" style="background-image:url(img/how_idea.jpg)"></div><div class="n">01</div><h3>Type your idea</h3><p>One sentence is enough. Add a script or pictures if you have them.</p></div>
+    <div class="card reveal"><div class="cimg" style="background-image:url(img/how_cast.jpg)"></div><div class="n">02</div><h3>Approve script &amp; cast</h3><p>ClipGleam writes the scenes and designs the characters. Change anything.</p></div>
+    <div class="card reveal"><div class="cimg" style="background-image:url(img/how_board.jpg)"></div><div class="n">03</div><h3>Watch it being made</h3><p>Live progress, shot by shot. Every shot passes a quality check.</p></div>
+    <div class="card reveal"><div class="cimg" style="background-image:url(img/how_share.jpg)"></div><div class="n">04</div><h3>Export &amp; share</h3><p>TikTok, Reels, YouTube or widescreen, ready to post.</p></div>
   </div>
-  <p class="reveal" style="margin-top:24px"><a class="btn ghost" href="studio.html">Take the Studio tour →</a></p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="sec-head reveal"><div class="eyebrow">Inside the Studio</div><h2>Watch your video being made.</h2><p>Every step is shown live. Every shot is checked before it reaches your edit.</p></div>
+  <div class="flow reveal" style="border:0;padding-top:0">
+    <div class="mock">
+      <div class="row"><span><b>The Last Caravan</b> · short film</span><span class="k">Generate</span></div>
+      <div class="k" style="margin-top:10px">Live progress</div><div class="meter"><i></i></div>
+      <div class="row"><span>✓ Script</span><span class="k">12 scenes</span></div>
+      <div class="row"><span>✓ Cast</span><span class="k">faces &amp; voices locked</span></div>
+      <div class="row"><span>✓ Storyboard</span><span class="k">40 shots planned</span></div>
+      <div class="row"><span>● Scenes</span><span class="k">rendering…</span></div>
+      <div class="row"><span>○ Music · Edit · Final check</span><span class="k">waiting</span></div>
+    </div>
+    <div class="mock" style="padding:0;overflow:hidden">
+      <div class="cimg" style="background-image:url(img/hero_desert.jpg);aspect-ratio:16/9;margin:0;border-radius:0"></div>
+      <div style="padding:16px 20px"><div class="k">Quality check · shot 12</div><div class="score"><div><b>94</b><small class="k">Sharp</small></div><div><b>97</b><small class="k">Face</small></div><div><b>91</b><small class="k">Motion</small></div><div><b>95</b><small class="k">Plan</small></div></div>
+      <p style="margin-top:12px"><span class="pill t">PASS</span> <span class="k">A weak shot is retaken automatically.</span></p></div>
+    </div>
+  </div>
+  <p class="reveal"><a class="btn ghost" href="studio.html">Take the full Studio tour →</a></p>
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
@@ -69,7 +93,17 @@
     <div class="rate"><b>8 credits = 1 min</b><span>Fully AI video</span></div>
     <div class="rate"><b>1 credit = 2 min</b><span>Template video</span></div>
   </div>
+  <p class="reveal" style="color:var(--mute);margin-bottom:20px">In plain words: <b style="color:var(--ink)">£5 makes about 2½ minutes of full AI video</b>, or about 40 minutes of template video.</p>
   <a class="btn ghost reveal" href="pricing.html">All prices →</a>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap" style="max-width:820px">
+  <div class="sec-head reveal"><div class="eyebrow">Questions</div><h2>Quick answers.</h2></div>
+  <details class="reveal"><summary>Do I need any editing skills?</summary><p>No. You type an idea and approve the script and characters. ClipGleam does the filming, voices, music and edit.</p></details>
+  <details class="reveal"><summary>How long does a video take?</summary><p>A short AI clip takes about 5–10 minutes. One minute of full AI video takes about 20–40 minutes. Template videos are quicker.</p></details>
+  <details class="reveal"><summary>Is there a subscription?</summary><p>No. You buy a credit pack from £5 and use it when you like. Credits last 12 months.</p></details>
+  <details class="reveal"><summary>Can I keep the same characters in every episode?</summary><p>Yes. Each character gets one face and one voice, locked for the whole series.</p></details>
+  <details class="reveal"><summary>Is ClipGleam open now?</summary><p>We are in early access. Send us your idea and we'll save your place in the first group.</p></details>
 </div></section>
 
 <section class="final" id="early"><div class="wrap">
@@ -83,12 +117,19 @@
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(n=>io.observe(n));
 
-const ideas=["A happy dog walks through the park at sunset 🌅","30-second advert for a chicken shop in Hayes 🍗","A lone rider races a desert storm to warn the city 🏜️"];
-const chars=["🐕","🍗","🏇"];
-const el=document.getElementById("typed"),ch=document.getElementById("char");let i=0;
-function play(){const t=ideas[i%ideas.length];ch.textContent=chars[i%chars.length];let k=0;el.textContent="";
-const iv=setInterval(()=>{el.textContent=t.slice(0,++k);if(k>=t.length){clearInterval(iv);setTimeout(()=>{i++;play()},3500)}},45);}
-play();
+const EX=[["Cartoon","A cheeky cat, a clever mouse and a friendly dog share breakfast","show_cartoon","3:00"],
+["Advert","30-second luxury perfume advert, gold light on black glass","show_perfume","0:30"],
+["Music video","A singer in neon rain, slow motion, cut to my song","show_neon","3:20"],
+["Film","Two armies meet on a misty plain at dawn","show_epic","8:00"],
+["Claymation","A clay fox and hedgehog explore a tiny clay village","show_clay","1:00"],
+["Documentary","A river delta at sunrise, seen from the sky","show_delta","5:00"]];
+const el=document.getElementById("typed"),shot=document.getElementById("shot"),ex=document.getElementById("ex");let i=0,iv,auto;
+EX.forEach((e,k)=>{const b=document.createElement("button");b.className="chip";b.type="button";b.textContent=e[0];b.onclick=()=>{clearTimeout(auto);show(k,true)};ex.appendChild(b);});
+function show(k,stay){i=k;const e=EX[k];[...ex.children].forEach((c,n)=>c.classList.toggle("on",n===k));
+shot.style.backgroundImage="url(img/"+e[2]+".jpg)";document.getElementById("dur").textContent=e[3];
+clearInterval(iv);let n=0;el.textContent="";iv=setInterval(()=>{el.textContent=e[1].slice(0,++n);if(n>=e[1].length){clearInterval(iv);if(!stay)auto=setTimeout(()=>show((i+1)%EX.length),3500)}},35);}
+show(0);
+document.getElementById("useIdea").onclick=()=>{const inp=document.getElementById("ideaIn");inp.value=EX[i][1];inp.scrollIntoView({behavior:"smooth",block:"center"});inp.focus();};
 let fmt="Short";
 document.querySelectorAll("#fmt .chip").forEach(c=>c.onclick=()=>{document.querySelectorAll("#fmt .chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");fmt=c.textContent;});
 document.getElementById("idea").onsubmit=e=>{e.preventDefault();
